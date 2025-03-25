@@ -35,7 +35,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 # Configure the runner
 Write-Host "Configuring runner..."
-& "$runnerDir\config.cmd" --url $"https:\\github.com\whispr-dev" --token $A7XY5YLZ5FJTQTF3MDUOK3LH4JEP4
+& "$runnerDir\config.cmd" --url $"https://github.com/whispr-dev/daily_market_report_medium" --token $A7XY5YKMKLLY345ADD4DPHLH4JQTA --labels self-hosted
 
 # Start the runner
 Write-Host "Starting the runner..."
