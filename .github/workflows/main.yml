@@ -1,31 +1,27 @@
-name: automailer
+name: Build
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '1 4 * * 1-7'
+  push:
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: self-hosted
-    steps: 
-      - name: checkout repo content
-        uses: actions/checkout@v4
+    runs-on: windows-latest
 
-      - name: Verify Python Version
-        run: C:\Python\Python313\python.exe --version
+    steps:
+      - uses: actions/checkout@v3
 
-      - name: install python packages
-          run: |
-            C:\Python\Python313\python.exe -m pip install --upgrade pip
-            C:\Python\Python313\python.exe -m pip install -r requirements.txt
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'  # or whatever version you need
 
-      - name: execute py script
-        env:
-          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
-          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          TO_EMAIL: ${{ secrets.TO_EMAIL }}
-        run: C:\Python\Python313\python.exe main.py
+      - name: Check python
+        run: python --version
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Do the thing
+        run: python main.py
+
