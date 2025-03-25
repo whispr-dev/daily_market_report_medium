@@ -13,10 +13,8 @@ jobs: # the jobs that will run sequentially
       - name: checkout repo content
         uses: actions/checkout@v4 # checkout the repository content to github runner
     
-      - name: setup python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13' # install the python version needed
+      - name: Verify Python Version
+        run: python --version  # install the python version needed
 
       - name: install python packages
         run: |
