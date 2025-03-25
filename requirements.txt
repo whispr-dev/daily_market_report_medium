@@ -1,0 +1,6 @@
+pandas
+yfinance
+sendmail
+jinja2
+datetime
+
