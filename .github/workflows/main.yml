@@ -1,7 +1,7 @@
-name: automailer # name of the workflow
+name: automailer
 
 on:
-  workflow_dispatch: # manual trigger
+  workflow_dispatch:
   schedule:
     - cron: '0 2 * * 1-6'
 
@@ -9,11 +9,10 @@ jobs:
   build:
     runs-on: self-hosted
     steps: 
-
       - name: checkout repo content
         uses: actions/checkout@v4
-    
-      # Explicitly REMOVED the problematic setup-python action.
+
+      # 🚨 MAKE SURE THIS STEP IS **REMOVED** COMPLETELY:
       # - name: setup python
       #   uses: actions/setup-python@v4
       #   with:
