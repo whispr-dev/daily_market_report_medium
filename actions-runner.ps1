@@ -6,7 +6,7 @@ $runnerZip = "actions-runner-win-x64-$runnerVersion.zip"
 $runnerUri = "https://github.com/actions/runner/releases/download/v$runnerVersion/$runnerZip"
 $expectedSHA256 = "ace5de018c88492ca80a2323af53ff3f43d2c82741853efb302928f250516015"
 $repoUrl = "https://github.com/whispr-dev/daily_market_report_medium" # Replace with your GitHub repository URL
-$runnerToken = "A7XY5YP7IA5XJHBNGMEHBB3H4J4XY" # Replace with your actual runner token from GitHub
+$runnerToken = "A7XY5YKVF47VH4BR5HLK3VDH4KKI6" # Replace with your actual runner token from GitHub
 $runnerDir = "$PWD\actions-runner"
 
 # Create and enter runner directory
@@ -35,7 +35,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 # Configure the runner
 Write-Host "Configuring runner..."
-& "$runnerDir\config.cmd" --url "https://github.com/whispr-dev/daily_market_report_medium" --token A7XY5YP7IA5XJHBNGMEHBB3H4J4XY --labels self-hosted
+& "$runnerDir\config.cmd" --url "https://github.com/whispr-dev/daily_market_report_medium" --token A7XY5YKVF47VH4BR5HLK3VDH4KKI6 --labels self-hosted
 
 # Start the runner
 Write-Host "Starting the runner..."
