@@ -24,4 +24,3 @@ jobs:
 
       - name: Do the thing
         run: python main.py
-
