@@ -21,8 +21,13 @@ jobs:
 
       - name: Install dependencies
           run: |
-            pip install -r requirements.txt
             pip install python-dotenv
+
+      - name: Show installed packages
+        run: pip freeze
+
+          run: |  
+            pip install -r requirements.txt
 
       - name: Show installed packages
         run: pip freeze

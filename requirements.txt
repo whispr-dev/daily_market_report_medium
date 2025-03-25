@@ -1,6 +1,6 @@
+python-dotenv==1.0.0
 pandas
 yfinance
 sendmail
 jinja2
 datetime
-python-dotenv
