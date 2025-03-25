@@ -1,5 +1,7 @@
 name: Build
 
+name: Build
+
 on:
   push:
     branches: [ "main" ]
@@ -14,23 +16,29 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'  # or whatever version you need
+          python-version: '3.11'
 
-      - name: Check python
+      - name: Check Python
         run: python --version
 
-      - name: Install dependencies
-          run: |
-            pip install python-dotenv
+      # Step 1: Install python-dotenv separately
+      - name: Install python-dotenv
+        run: |
+          pip install python-dotenv
 
-      - name: Show installed packages
+      # Step 2: Debug step to see what got installed
+      - name: Freeze Debug #1
         run: pip freeze
 
-          run: |  
-            pip install -r requirements.txt
+      # Step 3: Install everything else from requirements.txt
+      - name: Install from requirements
+        run: |
+          pip install -r requirements.txt
 
-      - name: Show installed packages
+      # Step 4: Another debug step to see all installed packages
+      - name: Freeze Debug #2
         run: pip freeze
 
+      # Step 5: Finally run your main script
       - name: Do the thing
         run: python main.py
