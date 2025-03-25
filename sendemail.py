@@ -8,12 +8,12 @@ load_dotenv()
 
 def send_email(subject, html_body):
 
-    #when on git hub it will fail since I will not upload the file with them
-    try:
-        from set_env_variables import set_env_variables
-        set_env_variables()
-    except Exception as e:
-        print(e)
+    # when on git hub it will fail since I will not upload the file with them
+    # try:
+    #     from set_env_variables import set_env_variables
+    #     set_env_variables()
+    # except Exception as e:
+    #     print(e)
 
     try:
         smtp_user = os.environ["smtp_user"]
