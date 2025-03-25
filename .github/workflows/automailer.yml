@@ -1,0 +1,31 @@
+name: automailer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '1 4 * * 1-7'
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps: 
+      - name: checkout repo content
+        uses: actions/checkout@v4
+
+      - name: Verify Python Version
+        run: C:\Python\Python313\python.exe --version
+
+      - name: install python packages
+          run: |
+            C:\Python\Python313\python.exe -m pip install --upgrade pip
+            C:\Python\Python313\python.exe -m pip install -r requirements.txt
+
+      - name: execute py script
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+        run: C:\Python\Python313\python.exe main.py
