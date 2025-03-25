@@ -1,6 +1,7 @@
-python-dotenv==1.0.0
+python-dotenv
 pandas
 yfinance
 sendmail
 jinja2
 datetime
+matplotlib>=3.3

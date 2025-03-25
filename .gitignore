@@ -1,18 +1,6 @@
-# Prerequisites
-*.d
-
-# Compiled Dynamic libraries
-*.dll
-
-# Compiled Static libraries
-*.lib
-
-# Executables
-*.exe
-*.app
-
 # Pre-existing archive crud
-*.zip
-old/
-env/
+old_code/
 actions-runner/
+env/_pycache_/
+env/env/
+.secrets
