@@ -1,0 +1,17 @@
+# Prerequisites
+*.d
+
+# Compiled Dynamic libraries
+*.dll
+
+# Compiled Static libraries
+*.lib
+
+# Executables
+*.exe
+*.app
+
+# Pre-existing archive crud
+*.zip
+old/
+env/

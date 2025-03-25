@@ -1,9 +1,9 @@
-name: run my automation # name of the workflow
+name: automailer # name of the workflow
 
 on:
   workflow_dispatch: # manual trigger of the workflow (if not set you cannot trigger it manually)
   schedule:
-    - cron: '0 2 * * 2-6' # At 02:00 on every day-of-week from Tuesday through Saturday
+    - cron: '0 2 * * 1-6' # At 06:00 on every day-of-week from Tuesday through Saturday
 
 jobs: # the jobs that will run sequentially
   build:
@@ -16,7 +16,7 @@ jobs: # the jobs that will run sequentially
       - name: setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12' # install the python version needed
+          python-version: '3.13' # install the python version needed
 
       - name: install python packages
         run: |
@@ -32,4 +32,3 @@ jobs: # the jobs that will run sequentially
           SMTP_USER: ${{ secrets.SMTP_USER }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: python main.py
-
