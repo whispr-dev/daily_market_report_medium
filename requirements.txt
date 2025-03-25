@@ -4,4 +4,3 @@ sendmail
 jinja2
 datetime
 python-dotenv
-
