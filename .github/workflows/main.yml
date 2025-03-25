@@ -3,7 +3,7 @@ name: automailer
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 2 * * 1-6'
+    - cron: '1 4 * * 1-7'
 
 jobs:
   build:
@@ -12,19 +12,13 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v4
 
-      # 🚨 MAKE SURE THIS STEP IS **REMOVED** COMPLETELY:
-      # - name: setup python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: '3.13'
-
       - name: Verify Python Version
-        run: python --version
+        run: C:\Python\Python313\python.exe --version
 
       - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          run: |
+            C:\Python\Python313\python.exe -m pip install --upgrade pip
+            C:\Python\Python313\python.exe -m pip install -r requirements.txt
 
       - name: execute py script
         env:
@@ -34,5 +28,4 @@ jobs:
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           TO_EMAIL: ${{ secrets.TO_EMAIL }}
-        run: python main.py
-
+        run: C:\Python\Python313\python.exe main.py
