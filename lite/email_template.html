@@ -42,39 +42,6 @@
 <h3>S&P 500 Trend (6 Months)</h3>
 <img src="data:image/png;base64,{{ sp500_plot }}" alt="S&P 500 Chart" style="width:100%; max-width:700px; border:1px solid #ccc; border-radius:5px;" />
 
-<!-- Right after the other tables, add something like: -->
-<h2>Magic Reversal Signals</h2>
-{% if data_magic|length > 0 %}
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Ticker</th>
-                <th>Name</th>
-                <th>Sector/Industry</th>
-                <th>Signal Trigger</th>
-                <th>Chart</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stock in data_magic %}
-            <tr>
-                <td><a href="https://finance.yahoo.com/quote/{{ stock.ticker }}">{{ stock.ticker }}</a></td>
-                <td>{{ stock.name }}</td>
-                <td>{{ stock.sector_industry }}</td>
-                <td>{{ stock.signal }}</td>
-                <td>
-                    <img src="data:image/png;base64,{{ stock.chart_base64 }}"
-                         alt="Magic Reversal Chart"
-                         style="width:500px; max-width:90%; border:1px solid #ccc; border-radius:5px;" />
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-{% else %}
-    <p>No Magic Reversal signals found today, fren!</p>
-{% endif %}
-
 <h2>Cross Over Moving Average {{ data.crossover_sma_days }}</h2>
 {% if data_crossover|length > 0 %}
 <table border="1">

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 Daily Stock Market Report 📉</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #333366;
+        }
+        .stock-list {
+            color: #004080;
+            font-weight: bold;
+        }
+        .error {
+            color: #a94442;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #f9f9f9;
+        }
+        .timestamp {
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📈 Daily Stock Market Report 📉</h1>
+
+    <p class="timestamp"><strong>Date:</strong> {{DATE}}</p>
+
+    <h2>🔥 Stocks hitting 52-week High</h2>
+    <p class="stock-list">
+        {{52_WEEK_HIGH}}
+    </p>
+
+    <h2>✨ Magic Reversal Signals</h2>
+    <p class="stock-list">
+        {{MAGIC_REVERSAL_SIGNALS}}
+    </p>
+
+    <h3>📊 Magic Reversal Candlestick Chart</h3>
+    <div>
+        {{MAGIC_REVERSAL_CHART}}
+    </div>
+
+    <h2>📈 Stocks Crossing Above 200-Day Moving Average</h2>
+    <p class="stock-list">
+        {{MA_CROSS_200}}
+    </p>
+
+    <h2>⚠️ Error Stocks (Failed Fetches)</h2>
+    <p class="error">
+        {{ERROR_STOCKS}}
+    </p>
+
+    <p>Happy trading, fren! 🚀💰</p>
+
+</body>
+</html>
