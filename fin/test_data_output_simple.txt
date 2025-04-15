@@ -1,0 +1,1830 @@
+PS C:\Users\phine\Documents\GitHub\caca\src> ./simple_ca_test ../test_data/1KB_paperXORd.bin xor_test
+Loading data from ../test_data/1KB_paperXORd.bin...
+Loaded 622 bytes
+
+Original data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 26 bytes
+[16-31]: 29 bytes
+[32-47]: 202 bytes
+[48-63]: 224 bytes
+[64-79]: 9 bytes
+[80-95]: 11 bytes
+[96-111]: 67 bytes
+[112-127]: 54 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+
+Applying CA Rule 30 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 48 bytes
+[16-31]: 35 bytes
+[32-47]: 161 bytes
+[48-63]: 158 bytes
+[64-79]: 39 bytes
+[80-95]: 43 bytes
+[96-111]: 77 bytes
+[112-127]: 61 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule30_iter1.bin
+
+Applying CA Rule 30 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 65 bytes
+[16-31]: 46 bytes
+[32-47]: 95 bytes
+[48-63]: 113 bytes
+[64-79]: 64 bytes
+[80-95]: 63 bytes
+[96-111]: 89 bytes
+[112-127]: 87 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule30_iter3.bin
+
+Applying CA Rule 30 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 67 bytes
+[16-31]: 76 bytes
+[32-47]: 65 bytes
+[48-63]: 62 bytes
+[64-79]: 92 bytes
+[80-95]: 76 bytes
+[96-111]: 89 bytes
+[112-127]: 95 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule30_iter5.bin
+
+Applying CA Rule 30 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 73 bytes
+[16-31]: 59 bytes
+[32-47]: 69 bytes
+[48-63]: 87 bytes
+[64-79]: 66 bytes
+[80-95]: 78 bytes
+[96-111]: 107 bytes
+[112-127]: 83 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule30_iter10.bin
+
+Applying CA Rule 82 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 39 bytes
+[16-31]: 43 bytes
+[32-47]: 77 bytes
+[48-63]: 61 bytes
+[64-79]: 48 bytes
+[80-95]: 35 bytes
+[96-111]: 161 bytes
+[112-127]: 158 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule82_iter1.bin
+
+Applying CA Rule 82 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 63 bytes
+[16-31]: 62 bytes
+[32-47]: 90 bytes
+[48-63]: 88 bytes
+[64-79]: 66 bytes
+[80-95]: 47 bytes
+[96-111]: 94 bytes
+[112-127]: 112 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule82_iter3.bin
+
+Applying CA Rule 82 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 93 bytes
+[16-31]: 77 bytes
+[32-47]: 91 bytes
+[48-63]: 95 bytes
+[64-79]: 66 bytes
+[80-95]: 75 bytes
+[96-111]: 63 bytes
+[112-127]: 62 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule82_iter5.bin
+
+Applying CA Rule 82 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 74 bytes
+[16-31]: 60 bytes
+[32-47]: 70 bytes
+[48-63]: 86 bytes
+[64-79]: 65 bytes
+[80-95]: 77 bytes
+[96-111]: 106 bytes
+[112-127]: 84 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule82_iter10.bin
+
+Applying CA Rule 110 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 61 bytes
+[16-31]: 77 bytes
+[32-47]: 43 bytes
+[48-63]: 39 bytes
+[64-79]: 158 bytes
+[80-95]: 161 bytes
+[96-111]: 35 bytes
+[112-127]: 48 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule110_iter1.bin
+
+Applying CA Rule 110 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 87 bytes
+[16-31]: 89 bytes
+[32-47]: 63 bytes
+[48-63]: 64 bytes
+[64-79]: 113 bytes
+[80-95]: 95 bytes
+[96-111]: 46 bytes
+[112-127]: 65 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule110_iter3.bin
+
+Applying CA Rule 110 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 95 bytes
+[16-31]: 90 bytes
+[32-47]: 78 bytes
+[48-63]: 93 bytes
+[64-79]: 61 bytes
+[80-95]: 63 bytes
+[96-111]: 75 bytes
+[112-127]: 67 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule110_iter5.bin
+
+Applying CA Rule 110 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 73 bytes
+[16-31]: 59 bytes
+[32-47]: 71 bytes
+[48-63]: 87 bytes
+[64-79]: 66 bytes
+[80-95]: 76 bytes
+[96-111]: 107 bytes
+[112-127]: 83 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule110_iter10.bin
+
+Applying CA Rule 150 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 0 bytes
+[16-31]: 0 bytes
+[32-47]: 0 bytes
+[48-63]: 0 bytes
+[64-79]: 0 bytes
+[80-95]: 0 bytes
+[96-111]: 0 bytes
+[112-127]: 0 bytes
+[128-143]: 48 bytes
+[144-159]: 35 bytes
+[160-175]: 161 bytes
+[176-191]: 158 bytes
+[192-207]: 39 bytes
+[208-223]: 43 bytes
+[224-239]: 77 bytes
+[240-255]: 61 bytes
+Saved processed data to xor_test_rule150_iter1.bin
+
+Applying CA Rule 150 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 0 bytes
+[16-31]: 0 bytes
+[32-47]: 1 bytes
+[48-63]: 1 bytes
+[64-79]: 1 bytes
+[80-95]: 1 bytes
+[96-111]: 0 bytes
+[112-127]: 0 bytes
+[128-143]: 65 bytes
+[144-159]: 46 bytes
+[160-175]: 94 bytes
+[176-191]: 112 bytes
+[192-207]: 63 bytes
+[208-223]: 62 bytes
+[224-239]: 89 bytes
+[240-255]: 87 bytes
+Saved processed data to xor_test_rule150_iter3.bin
+
+Applying CA Rule 150 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 1 bytes
+[16-31]: 1 bytes
+[32-47]: 2 bytes
+[48-63]: 1 bytes
+[64-79]: 0 bytes
+[80-95]: 0 bytes
+[96-111]: 0 bytes
+[112-127]: 1 bytes
+[128-143]: 66 bytes
+[144-159]: 75 bytes
+[160-175]: 63 bytes
+[176-191]: 61 bytes
+[192-207]: 92 bytes
+[208-223]: 76 bytes
+[224-239]: 89 bytes
+[240-255]: 94 bytes
+Saved processed data to xor_test_rule150_iter5.bin
+
+Applying CA Rule 150 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 73 bytes
+[16-31]: 58 bytes
+[32-47]: 69 bytes
+[48-63]: 86 bytes
+[64-79]: 65 bytes
+[80-95]: 76 bytes
+[96-111]: 106 bytes
+[112-127]: 83 bytes
+[128-143]: 0 bytes
+[144-159]: 1 bytes
+[160-175]: 0 bytes
+[176-191]: 1 bytes
+[192-207]: 1 bytes
+[208-223]: 2 bytes
+[224-239]: 1 bytes
+[240-255]: 0 bytes
+Saved processed data to xor_test_rule150_iter10.bin
+PS C:\Users\phine\Documents\GitHub\caca\src>
+
+
+
+#######
+#######
+#######
+
+
+
+PS C:\Users\phine\Documents\GitHub\caca\src> ./simple_ca_test ../test_data/1KB_paper_caesar.bin caesar_test
+Loading data from ../test_data/1KB_paper_caesar.bin...
+Loaded 622 bytes
+
+Original data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 10 bytes
+[16-31]: 10 bytes
+[32-47]: 91 bytes
+[48-63]: 30 bytes
+[64-79]: 24 bytes
+[80-95]: 31 bytes
+[96-111]: 221 bytes
+[112-127]: 205 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+
+Applying CA Rule 30 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 63 bytes
+[16-31]: 20 bytes
+[32-47]: 93 bytes
+[48-63]: 46 bytes
+[64-79]: 44 bytes
+[80-95]: 38 bytes
+[96-111]: 164 bytes
+[112-127]: 154 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule30_iter1.bin
+
+Applying CA Rule 30 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 62 bytes
+[16-31]: 64 bytes
+[32-47]: 84 bytes
+[48-63]: 95 bytes
+[64-79]: 53 bytes
+[80-95]: 59 bytes
+[96-111]: 115 bytes
+[112-127]: 90 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule30_iter3.bin
+
+Applying CA Rule 30 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 91 bytes
+[16-31]: 78 bytes
+[32-47]: 108 bytes
+[48-63]: 79 bytes
+[64-79]: 69 bytes
+[80-95]: 73 bytes
+[96-111]: 64 bytes
+[112-127]: 60 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule30_iter5.bin
+
+Applying CA Rule 30 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 69 bytes
+[16-31]: 77 bytes
+[32-47]: 108 bytes
+[48-63]: 80 bytes
+[64-79]: 63 bytes
+[80-95]: 67 bytes
+[96-111]: 69 bytes
+[112-127]: 89 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule30_iter10.bin
+
+Applying CA Rule 82 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 44 bytes
+[16-31]: 38 bytes
+[32-47]: 164 bytes
+[48-63]: 154 bytes
+[64-79]: 63 bytes
+[80-95]: 20 bytes
+[96-111]: 93 bytes
+[112-127]: 46 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule82_iter1.bin
+
+Applying CA Rule 82 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 53 bytes
+[16-31]: 59 bytes
+[32-47]: 114 bytes
+[48-63]: 91 bytes
+[64-79]: 62 bytes
+[80-95]: 64 bytes
+[96-111]: 85 bytes
+[112-127]: 94 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule82_iter3.bin
+
+Applying CA Rule 82 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 71 bytes
+[16-31]: 73 bytes
+[32-47]: 65 bytes
+[48-63]: 61 bytes
+[64-79]: 89 bytes
+[80-95]: 78 bytes
+[96-111]: 107 bytes
+[112-127]: 78 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule82_iter5.bin
+
+Applying CA Rule 82 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 69 bytes
+[16-31]: 75 bytes
+[32-47]: 108 bytes
+[48-63]: 80 bytes
+[64-79]: 63 bytes
+[80-95]: 69 bytes
+[96-111]: 69 bytes
+[112-127]: 89 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule82_iter10.bin
+
+Applying CA Rule 110 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 154 bytes
+[16-31]: 164 bytes
+[32-47]: 38 bytes
+[48-63]: 44 bytes
+[64-79]: 46 bytes
+[80-95]: 93 bytes
+[96-111]: 20 bytes
+[112-127]: 63 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule110_iter1.bin
+
+Applying CA Rule 110 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 90 bytes
+[16-31]: 115 bytes
+[32-47]: 58 bytes
+[48-63]: 54 bytes
+[64-79]: 94 bytes
+[80-95]: 85 bytes
+[96-111]: 64 bytes
+[112-127]: 62 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule110_iter3.bin
+
+Applying CA Rule 110 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 61 bytes
+[16-31]: 64 bytes
+[32-47]: 74 bytes
+[48-63]: 71 bytes
+[64-79]: 77 bytes
+[80-95]: 107 bytes
+[96-111]: 78 bytes
+[112-127]: 90 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule110_iter5.bin
+
+Applying CA Rule 110 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 69 bytes
+[16-31]: 75 bytes
+[32-47]: 108 bytes
+[48-63]: 80 bytes
+[64-79]: 63 bytes
+[80-95]: 67 bytes
+[96-111]: 71 bytes
+[112-127]: 89 bytes
+[128-143]: 0 bytes
+[144-159]: 0 bytes
+[160-175]: 0 bytes
+[176-191]: 0 bytes
+[192-207]: 0 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 0 bytes
+Saved processed data to caesar_test_rule110_iter10.bin
+
+Applying CA Rule 150 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 0 bytes
+[16-31]: 0 bytes
+[32-47]: 0 bytes
+[48-63]: 0 bytes
+[64-79]: 0 bytes
+[80-95]: 0 bytes
+[96-111]: 0 bytes
+[112-127]: 0 bytes
+[128-143]: 63 bytes
+[144-159]: 20 bytes
+[160-175]: 93 bytes
+[176-191]: 46 bytes
+[192-207]: 44 bytes
+[208-223]: 38 bytes
+[224-239]: 164 bytes
+[240-255]: 154 bytes
+Saved processed data to caesar_test_rule150_iter1.bin
+
+Applying CA Rule 150 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 0 bytes
+[16-31]: 1 bytes
+[32-47]: 0 bytes
+[48-63]: 1 bytes
+[64-79]: 0 bytes
+[80-95]: 1 bytes
+[96-111]: 1 bytes
+[112-127]: 0 bytes
+[128-143]: 62 bytes
+[144-159]: 63 bytes
+[160-175]: 84 bytes
+[176-191]: 94 bytes
+[192-207]: 53 bytes
+[208-223]: 58 bytes
+[224-239]: 114 bytes
+[240-255]: 90 bytes
+Saved processed data to caesar_test_rule150_iter3.bin
+
+Applying CA Rule 150 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 2 bytes
+[16-31]: 0 bytes
+[32-47]: 1 bytes
+[48-63]: 2 bytes
+[64-79]: 0 bytes
+[80-95]: 0 bytes
+[96-111]: 0 bytes
+[112-127]: 1 bytes
+[128-143]: 89 bytes
+[144-159]: 78 bytes
+[160-175]: 107 bytes
+[176-191]: 77 bytes
+[192-207]: 69 bytes
+[208-223]: 73 bytes
+[224-239]: 64 bytes
+[240-255]: 59 bytes
+Saved processed data to caesar_test_rule150_iter5.bin
+
+Applying CA Rule 150 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 68 bytes
+[16-31]: 75 bytes
+[32-47]: 108 bytes
+[48-63]: 79 bytes
+[64-79]: 62 bytes
+[80-95]: 67 bytes
+[96-111]: 69 bytes
+[112-127]: 88 bytes
+[128-143]: 1 bytes
+[144-159]: 2 bytes
+[160-175]: 0 bytes
+[176-191]: 1 bytes
+[192-207]: 1 bytes
+[208-223]: 0 bytes
+[224-239]: 0 bytes
+[240-255]: 1 bytes
+Saved processed data to caesar_test_rule150_iter10.bin
+PS C:\Users\phine\Documents\GitHub\caca\src>
+
+
+
+#######
+#######
+#######
+
+
+PS C:\Users\phine\Documents\GitHub\caca\src> ./simple_ca_test ../test_data/1KB-paper_aes_ecb.bin aes_ecb_test
+Loading data from ../test_data/1KB-paper_aes_ecb.bin...
+Loaded 640 bytes
+
+Original data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 38 bytes
+[16-31]: 28 bytes
+[32-47]: 43 bytes
+[48-63]: 40 bytes
+[64-79]: 40 bytes
+[80-95]: 56 bytes
+[96-111]: 42 bytes
+[112-127]: 34 bytes
+[128-143]: 32 bytes
+[144-159]: 47 bytes
+[160-175]: 45 bytes
+[176-191]: 44 bytes
+[192-207]: 31 bytes
+[208-223]: 39 bytes
+[224-239]: 36 bytes
+[240-255]: 45 bytes
+
+Applying CA Rule 30 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 37 bytes
+[16-31]: 35 bytes
+[32-47]: 39 bytes
+[48-63]: 45 bytes
+[64-79]: 44 bytes
+[80-95]: 45 bytes
+[96-111]: 33 bytes
+[112-127]: 43 bytes
+[128-143]: 34 bytes
+[144-159]: 36 bytes
+[160-175]: 35 bytes
+[176-191]: 45 bytes
+[192-207]: 42 bytes
+[208-223]: 52 bytes
+[224-239]: 36 bytes
+[240-255]: 39 bytes
+Saved processed data to aes_ecb_test_rule30_iter1.bin
+
+Applying CA Rule 30 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 43 bytes
+[16-31]: 40 bytes
+[32-47]: 48 bytes
+[48-63]: 43 bytes
+[64-79]: 36 bytes
+[80-95]: 45 bytes
+[96-111]: 42 bytes
+[112-127]: 40 bytes
+[128-143]: 39 bytes
+[144-159]: 34 bytes
+[160-175]: 35 bytes
+[176-191]: 37 bytes
+[192-207]: 51 bytes
+[208-223]: 40 bytes
+[224-239]: 33 bytes
+[240-255]: 34 bytes
+Saved processed data to aes_ecb_test_rule30_iter3.bin
+
+Applying CA Rule 30 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 41 bytes
+[16-31]: 34 bytes
+[32-47]: 46 bytes
+[48-63]: 38 bytes
+[64-79]: 38 bytes
+[80-95]: 38 bytes
+[96-111]: 46 bytes
+[112-127]: 49 bytes
+[128-143]: 43 bytes
+[144-159]: 47 bytes
+[160-175]: 42 bytes
+[176-191]: 38 bytes
+[192-207]: 31 bytes
+[208-223]: 34 bytes
+[224-239]: 40 bytes
+[240-255]: 35 bytes
+Saved processed data to aes_ecb_test_rule30_iter5.bin
+
+Applying CA Rule 30 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 38 bytes
+[32-47]: 47 bytes
+[48-63]: 36 bytes
+[64-79]: 42 bytes
+[80-95]: 40 bytes
+[96-111]: 44 bytes
+[112-127]: 29 bytes
+[128-143]: 47 bytes
+[144-159]: 38 bytes
+[160-175]: 33 bytes
+[176-191]: 46 bytes
+[192-207]: 42 bytes
+[208-223]: 34 bytes
+[224-239]: 44 bytes
+[240-255]: 38 bytes
+Saved processed data to aes_ecb_test_rule30_iter10.bin
+
+Applying CA Rule 82 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 44 bytes
+[16-31]: 45 bytes
+[32-47]: 33 bytes
+[48-63]: 43 bytes
+[64-79]: 37 bytes
+[80-95]: 35 bytes
+[96-111]: 39 bytes
+[112-127]: 45 bytes
+[128-143]: 42 bytes
+[144-159]: 52 bytes
+[160-175]: 36 bytes
+[176-191]: 39 bytes
+[192-207]: 34 bytes
+[208-223]: 36 bytes
+[224-239]: 35 bytes
+[240-255]: 45 bytes
+Saved processed data to aes_ecb_test_rule82_iter1.bin
+
+Applying CA Rule 82 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 36 bytes
+[16-31]: 45 bytes
+[32-47]: 42 bytes
+[48-63]: 39 bytes
+[64-79]: 43 bytes
+[80-95]: 40 bytes
+[96-111]: 48 bytes
+[112-127]: 44 bytes
+[128-143]: 51 bytes
+[144-159]: 40 bytes
+[160-175]: 34 bytes
+[176-191]: 34 bytes
+[192-207]: 39 bytes
+[208-223]: 34 bytes
+[224-239]: 34 bytes
+[240-255]: 37 bytes
+Saved processed data to aes_ecb_test_rule82_iter3.bin
+
+Applying CA Rule 82 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 38 bytes
+[16-31]: 38 bytes
+[32-47]: 48 bytes
+[48-63]: 51 bytes
+[64-79]: 41 bytes
+[80-95]: 34 bytes
+[96-111]: 44 bytes
+[112-127]: 36 bytes
+[128-143]: 31 bytes
+[144-159]: 35 bytes
+[160-175]: 41 bytes
+[176-191]: 35 bytes
+[192-207]: 43 bytes
+[208-223]: 46 bytes
+[224-239]: 41 bytes
+[240-255]: 38 bytes
+Saved processed data to aes_ecb_test_rule82_iter5.bin
+
+Applying CA Rule 82 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 38 bytes
+[32-47]: 49 bytes
+[48-63]: 35 bytes
+[64-79]: 42 bytes
+[80-95]: 40 bytes
+[96-111]: 42 bytes
+[112-127]: 30 bytes
+[128-143]: 45 bytes
+[144-159]: 39 bytes
+[160-175]: 33 bytes
+[176-191]: 46 bytes
+[192-207]: 44 bytes
+[208-223]: 33 bytes
+[224-239]: 44 bytes
+[240-255]: 38 bytes
+Saved processed data to aes_ecb_test_rule82_iter10.bin
+
+Applying CA Rule 110 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 43 bytes
+[16-31]: 33 bytes
+[32-47]: 45 bytes
+[48-63]: 44 bytes
+[64-79]: 45 bytes
+[80-95]: 39 bytes
+[96-111]: 35 bytes
+[112-127]: 37 bytes
+[128-143]: 39 bytes
+[144-159]: 36 bytes
+[160-175]: 52 bytes
+[176-191]: 42 bytes
+[192-207]: 45 bytes
+[208-223]: 35 bytes
+[224-239]: 36 bytes
+[240-255]: 34 bytes
+Saved processed data to aes_ecb_test_rule110_iter1.bin
+
+Applying CA Rule 110 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 39 bytes
+[16-31]: 41 bytes
+[32-47]: 46 bytes
+[48-63]: 36 bytes
+[64-79]: 43 bytes
+[80-95]: 47 bytes
+[96-111]: 41 bytes
+[112-127]: 44 bytes
+[128-143]: 34 bytes
+[144-159]: 33 bytes
+[160-175]: 41 bytes
+[176-191]: 51 bytes
+[192-207]: 37 bytes
+[208-223]: 34 bytes
+[224-239]: 34 bytes
+[240-255]: 39 bytes
+Saved processed data to aes_ecb_test_rule110_iter3.bin
+
+Applying CA Rule 110 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 49 bytes
+[16-31]: 46 bytes
+[32-47]: 40 bytes
+[48-63]: 40 bytes
+[64-79]: 36 bytes
+[80-95]: 44 bytes
+[96-111]: 34 bytes
+[112-127]: 41 bytes
+[128-143]: 35 bytes
+[144-159]: 41 bytes
+[160-175]: 35 bytes
+[176-191]: 31 bytes
+[192-207]: 38 bytes
+[208-223]: 41 bytes
+[224-239]: 46 bytes
+[240-255]: 43 bytes
+Saved processed data to aes_ecb_test_rule110_iter5.bin
+
+Applying CA Rule 110 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 40 bytes
+[32-47]: 47 bytes
+[48-63]: 35 bytes
+[64-79]: 43 bytes
+[80-95]: 40 bytes
+[96-111]: 42 bytes
+[112-127]: 29 bytes
+[128-143]: 45 bytes
+[144-159]: 38 bytes
+[160-175]: 34 bytes
+[176-191]: 46 bytes
+[192-207]: 42 bytes
+[208-223]: 33 bytes
+[224-239]: 44 bytes
+[240-255]: 40 bytes
+Saved processed data to aes_ecb_test_rule110_iter10.bin
+
+Applying CA Rule 150 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 34 bytes
+[16-31]: 36 bytes
+[32-47]: 35 bytes
+[48-63]: 45 bytes
+[64-79]: 42 bytes
+[80-95]: 52 bytes
+[96-111]: 36 bytes
+[112-127]: 39 bytes
+[128-143]: 37 bytes
+[144-159]: 35 bytes
+[160-175]: 39 bytes
+[176-191]: 45 bytes
+[192-207]: 44 bytes
+[208-223]: 45 bytes
+[224-239]: 33 bytes
+[240-255]: 43 bytes
+Saved processed data to aes_ecb_test_rule150_iter1.bin
+
+Applying CA Rule 150 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 39 bytes
+[16-31]: 34 bytes
+[32-47]: 35 bytes
+[48-63]: 37 bytes
+[64-79]: 51 bytes
+[80-95]: 40 bytes
+[96-111]: 34 bytes
+[112-127]: 35 bytes
+[128-143]: 43 bytes
+[144-159]: 40 bytes
+[160-175]: 48 bytes
+[176-191]: 43 bytes
+[192-207]: 36 bytes
+[208-223]: 45 bytes
+[224-239]: 41 bytes
+[240-255]: 39 bytes
+Saved processed data to aes_ecb_test_rule150_iter3.bin
+
+Applying CA Rule 150 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 43 bytes
+[16-31]: 46 bytes
+[32-47]: 43 bytes
+[48-63]: 40 bytes
+[64-79]: 31 bytes
+[80-95]: 34 bytes
+[96-111]: 40 bytes
+[112-127]: 35 bytes
+[128-143]: 41 bytes
+[144-159]: 35 bytes
+[160-175]: 45 bytes
+[176-191]: 36 bytes
+[192-207]: 38 bytes
+[208-223]: 38 bytes
+[224-239]: 46 bytes
+[240-255]: 49 bytes
+Saved processed data to aes_ecb_test_rule150_iter5.bin
+
+Applying CA Rule 150 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 44 bytes
+[16-31]: 38 bytes
+[32-47]: 47 bytes
+[48-63]: 35 bytes
+[64-79]: 42 bytes
+[80-95]: 41 bytes
+[96-111]: 42 bytes
+[112-127]: 29 bytes
+[128-143]: 45 bytes
+[144-159]: 38 bytes
+[160-175]: 33 bytes
+[176-191]: 47 bytes
+[192-207]: 42 bytes
+[208-223]: 33 bytes
+[224-239]: 46 bytes
+[240-255]: 38 bytes
+Saved processed data to aes_ecb_test_rule150_iter10.bin
+PS C:\Users\phine\Documents\GitHub\caca\src>
+
+
+
+#######
+#######
+#######
+
+
+
+PS C:\Users\phine\Documents\GitHub\caca\src> ./simple_ca_test ../test_data/1KB_paper_aes_cbc_iv.bin aes_cbc_test
+Loading data from ../test_data/1KB_paper_aes_cbc_iv.bin...
+Loaded 640 bytes
+
+Original data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 35 bytes
+[16-31]: 38 bytes
+[32-47]: 34 bytes
+[48-63]: 40 bytes
+[64-79]: 40 bytes
+[80-95]: 34 bytes
+[96-111]: 39 bytes
+[112-127]: 40 bytes
+[128-143]: 43 bytes
+[144-159]: 40 bytes
+[160-175]: 40 bytes
+[176-191]: 33 bytes
+[192-207]: 49 bytes
+[208-223]: 46 bytes
+[224-239]: 41 bytes
+[240-255]: 48 bytes
+
+Applying CA Rule 30 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 47 bytes
+[16-31]: 38 bytes
+[32-47]: 32 bytes
+[48-63]: 39 bytes
+[64-79]: 42 bytes
+[80-95]: 44 bytes
+[96-111]: 35 bytes
+[112-127]: 47 bytes
+[128-143]: 38 bytes
+[144-159]: 41 bytes
+[160-175]: 38 bytes
+[176-191]: 35 bytes
+[192-207]: 39 bytes
+[208-223]: 37 bytes
+[224-239]: 47 bytes
+[240-255]: 41 bytes
+Saved processed data to aes_cbc_test_rule30_iter1.bin
+
+Applying CA Rule 30 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 36 bytes
+[16-31]: 47 bytes
+[32-47]: 41 bytes
+[48-63]: 41 bytes
+[64-79]: 39 bytes
+[80-95]: 42 bytes
+[96-111]: 35 bytes
+[112-127]: 47 bytes
+[128-143]: 36 bytes
+[144-159]: 42 bytes
+[160-175]: 38 bytes
+[176-191]: 36 bytes
+[192-207]: 34 bytes
+[208-223]: 44 bytes
+[224-239]: 48 bytes
+[240-255]: 34 bytes
+Saved processed data to aes_cbc_test_rule30_iter3.bin
+
+Applying CA Rule 30 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 45 bytes
+[16-31]: 35 bytes
+[32-47]: 38 bytes
+[48-63]: 44 bytes
+[64-79]: 40 bytes
+[80-95]: 44 bytes
+[96-111]: 40 bytes
+[112-127]: 47 bytes
+[128-143]: 43 bytes
+[144-159]: 36 bytes
+[160-175]: 45 bytes
+[176-191]: 41 bytes
+[192-207]: 34 bytes
+[208-223]: 37 bytes
+[224-239]: 30 bytes
+[240-255]: 41 bytes
+Saved processed data to aes_cbc_test_rule30_iter5.bin
+
+Applying CA Rule 30 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 38 bytes
+[32-47]: 31 bytes
+[48-63]: 44 bytes
+[64-79]: 39 bytes
+[80-95]: 42 bytes
+[96-111]: 33 bytes
+[112-127]: 48 bytes
+[128-143]: 50 bytes
+[144-159]: 32 bytes
+[160-175]: 48 bytes
+[176-191]: 34 bytes
+[192-207]: 42 bytes
+[208-223]: 45 bytes
+[224-239]: 39 bytes
+[240-255]: 33 bytes
+Saved processed data to aes_cbc_test_rule30_iter10.bin
+
+Applying CA Rule 82 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 44 bytes
+[32-47]: 35 bytes
+[48-63]: 47 bytes
+[64-79]: 47 bytes
+[80-95]: 38 bytes
+[96-111]: 32 bytes
+[112-127]: 39 bytes
+[128-143]: 39 bytes
+[144-159]: 37 bytes
+[160-175]: 47 bytes
+[176-191]: 41 bytes
+[192-207]: 38 bytes
+[208-223]: 41 bytes
+[224-239]: 38 bytes
+[240-255]: 35 bytes
+Saved processed data to aes_cbc_test_rule82_iter1.bin
+
+Applying CA Rule 82 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 39 bytes
+[16-31]: 41 bytes
+[32-47]: 36 bytes
+[48-63]: 46 bytes
+[64-79]: 36 bytes
+[80-95]: 48 bytes
+[96-111]: 40 bytes
+[112-127]: 42 bytes
+[128-143]: 34 bytes
+[144-159]: 44 bytes
+[160-175]: 49 bytes
+[176-191]: 34 bytes
+[192-207]: 36 bytes
+[208-223]: 42 bytes
+[224-239]: 37 bytes
+[240-255]: 36 bytes
+Saved processed data to aes_cbc_test_rule82_iter3.bin
+
+Applying CA Rule 82 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 40 bytes
+[16-31]: 44 bytes
+[32-47]: 42 bytes
+[48-63]: 48 bytes
+[64-79]: 45 bytes
+[80-95]: 35 bytes
+[96-111]: 36 bytes
+[112-127]: 43 bytes
+[128-143]: 35 bytes
+[144-159]: 36 bytes
+[160-175]: 31 bytes
+[176-191]: 41 bytes
+[192-207]: 42 bytes
+[208-223]: 37 bytes
+[224-239]: 44 bytes
+[240-255]: 41 bytes
+Saved processed data to aes_cbc_test_rule82_iter5.bin
+
+Applying CA Rule 82 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 38 bytes
+[32-47]: 31 bytes
+[48-63]: 47 bytes
+[64-79]: 39 bytes
+[80-95]: 42 bytes
+[96-111]: 33 bytes
+[112-127]: 45 bytes
+[128-143]: 50 bytes
+[144-159]: 33 bytes
+[160-175]: 47 bytes
+[176-191]: 33 bytes
+[192-207]: 42 bytes
+[208-223]: 44 bytes
+[224-239]: 40 bytes
+[240-255]: 34 bytes
+Saved processed data to aes_cbc_test_rule82_iter10.bin
+
+Applying CA Rule 110 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 47 bytes
+[16-31]: 35 bytes
+[32-47]: 44 bytes
+[48-63]: 42 bytes
+[64-79]: 39 bytes
+[80-95]: 32 bytes
+[96-111]: 38 bytes
+[112-127]: 47 bytes
+[128-143]: 41 bytes
+[144-159]: 47 bytes
+[160-175]: 37 bytes
+[176-191]: 39 bytes
+[192-207]: 35 bytes
+[208-223]: 38 bytes
+[224-239]: 41 bytes
+[240-255]: 38 bytes
+Saved processed data to aes_cbc_test_rule110_iter1.bin
+
+Applying CA Rule 110 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 46 bytes
+[16-31]: 35 bytes
+[32-47]: 42 bytes
+[48-63]: 39 bytes
+[64-79]: 41 bytes
+[80-95]: 41 bytes
+[96-111]: 47 bytes
+[112-127]: 37 bytes
+[128-143]: 34 bytes
+[144-159]: 48 bytes
+[160-175]: 45 bytes
+[176-191]: 34 bytes
+[192-207]: 36 bytes
+[208-223]: 37 bytes
+[224-239]: 42 bytes
+[240-255]: 36 bytes
+Saved processed data to aes_cbc_test_rule110_iter3.bin
+
+Applying CA Rule 110 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 47 bytes
+[16-31]: 40 bytes
+[32-47]: 46 bytes
+[48-63]: 41 bytes
+[64-79]: 43 bytes
+[80-95]: 36 bytes
+[96-111]: 35 bytes
+[112-127]: 45 bytes
+[128-143]: 42 bytes
+[144-159]: 30 bytes
+[160-175]: 37 bytes
+[176-191]: 34 bytes
+[192-207]: 41 bytes
+[208-223]: 45 bytes
+[224-239]: 36 bytes
+[240-255]: 42 bytes
+Saved processed data to aes_cbc_test_rule110_iter5.bin
+
+Applying CA Rule 110 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 45 bytes
+[16-31]: 38 bytes
+[32-47]: 31 bytes
+[48-63]: 44 bytes
+[64-79]: 39 bytes
+[80-95]: 42 bytes
+[96-111]: 33 bytes
+[112-127]: 45 bytes
+[128-143]: 50 bytes
+[144-159]: 32 bytes
+[160-175]: 48 bytes
+[176-191]: 33 bytes
+[192-207]: 43 bytes
+[208-223]: 45 bytes
+[224-239]: 39 bytes
+[240-255]: 33 bytes
+Saved processed data to aes_cbc_test_rule110_iter10.bin
+
+Applying CA Rule 150 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 38 bytes
+[16-31]: 41 bytes
+[32-47]: 38 bytes
+[48-63]: 35 bytes
+[64-79]: 39 bytes
+[80-95]: 37 bytes
+[96-111]: 47 bytes
+[112-127]: 41 bytes
+[128-143]: 47 bytes
+[144-159]: 38 bytes
+[160-175]: 32 bytes
+[176-191]: 39 bytes
+[192-207]: 42 bytes
+[208-223]: 44 bytes
+[224-239]: 35 bytes
+[240-255]: 47 bytes
+Saved processed data to aes_cbc_test_rule150_iter1.bin
+
+Applying CA Rule 150 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 36 bytes
+[16-31]: 42 bytes
+[32-47]: 38 bytes
+[48-63]: 36 bytes
+[64-79]: 34 bytes
+[80-95]: 45 bytes
+[96-111]: 48 bytes
+[112-127]: 35 bytes
+[128-143]: 36 bytes
+[144-159]: 47 bytes
+[160-175]: 41 bytes
+[176-191]: 41 bytes
+[192-207]: 39 bytes
+[208-223]: 41 bytes
+[224-239]: 35 bytes
+[240-255]: 46 bytes
+Saved processed data to aes_cbc_test_rule150_iter3.bin
+
+Applying CA Rule 150 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 36 bytes
+[32-47]: 46 bytes
+[48-63]: 42 bytes
+[64-79]: 34 bytes
+[80-95]: 36 bytes
+[96-111]: 30 bytes
+[112-127]: 41 bytes
+[128-143]: 46 bytes
+[144-159]: 35 bytes
+[160-175]: 37 bytes
+[176-191]: 43 bytes
+[192-207]: 40 bytes
+[208-223]: 45 bytes
+[224-239]: 40 bytes
+[240-255]: 47 bytes
+Saved processed data to aes_cbc_test_rule150_iter5.bin
+
+Applying CA Rule 150 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 38 bytes
+[32-47]: 32 bytes
+[48-63]: 45 bytes
+[64-79]: 39 bytes
+[80-95]: 43 bytes
+[96-111]: 33 bytes
+[112-127]: 45 bytes
+[128-143]: 50 bytes
+[144-159]: 32 bytes
+[160-175]: 47 bytes
+[176-191]: 33 bytes
+[192-207]: 42 bytes
+[208-223]: 44 bytes
+[224-239]: 39 bytes
+[240-255]: 36 bytes
+Saved processed data to aes_cbc_test_rule150_iter10.bin
+PS C:\Users\phine\Documents\GitHub\caca\src>
+
+
+
+#######
+#######
+#######
+
+
+
+PS C:\Users\phine\Documents\GitHub\caca\src> ./simple_ca_test ../test_data/1KB_paper_aes_ctr.bin aes_ctr_test
+Loading data from ../test_data/1KB_paper_aes_ctr.bin...
+Loaded 638 bytes
+
+Original data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 39 bytes
+[32-47]: 38 bytes
+[48-63]: 39 bytes
+[64-79]: 48 bytes
+[80-95]: 41 bytes
+[96-111]: 46 bytes
+[112-127]: 43 bytes
+[128-143]: 44 bytes
+[144-159]: 35 bytes
+[160-175]: 27 bytes
+[176-191]: 31 bytes
+[192-207]: 59 bytes
+[208-223]: 27 bytes
+[224-239]: 44 bytes
+[240-255]: 35 bytes
+
+Applying CA Rule 30 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 44 bytes
+[16-31]: 34 bytes
+[32-47]: 28 bytes
+[48-63]: 58 bytes
+[64-79]: 39 bytes
+[80-95]: 55 bytes
+[96-111]: 34 bytes
+[112-127]: 42 bytes
+[128-143]: 31 bytes
+[144-159]: 35 bytes
+[160-175]: 38 bytes
+[176-191]: 28 bytes
+[192-207]: 41 bytes
+[208-223]: 46 bytes
+[224-239]: 42 bytes
+[240-255]: 43 bytes
+Saved processed data to aes_ctr_test_rule30_iter1.bin
+
+Applying CA Rule 30 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 37 bytes
+[16-31]: 42 bytes
+[32-47]: 44 bytes
+[48-63]: 44 bytes
+[64-79]: 27 bytes
+[80-95]: 46 bytes
+[96-111]: 44 bytes
+[112-127]: 29 bytes
+[128-143]: 35 bytes
+[144-159]: 51 bytes
+[160-175]: 39 bytes
+[176-191]: 45 bytes
+[192-207]: 38 bytes
+[208-223]: 37 bytes
+[224-239]: 33 bytes
+[240-255]: 47 bytes
+Saved processed data to aes_ctr_test_rule30_iter3.bin
+
+Applying CA Rule 30 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 44 bytes
+[16-31]: 34 bytes
+[32-47]: 50 bytes
+[48-63]: 33 bytes
+[64-79]: 39 bytes
+[80-95]: 42 bytes
+[96-111]: 49 bytes
+[112-127]: 38 bytes
+[128-143]: 40 bytes
+[144-159]: 36 bytes
+[160-175]: 44 bytes
+[176-191]: 36 bytes
+[192-207]: 36 bytes
+[208-223]: 39 bytes
+[224-239]: 40 bytes
+[240-255]: 38 bytes
+Saved processed data to aes_ctr_test_rule30_iter5.bin
+
+Applying CA Rule 30 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 43 bytes
+[32-47]: 40 bytes
+[48-63]: 35 bytes
+[64-79]: 42 bytes
+[80-95]: 32 bytes
+[96-111]: 52 bytes
+[112-127]: 45 bytes
+[128-143]: 33 bytes
+[144-159]: 42 bytes
+[160-175]: 28 bytes
+[176-191]: 34 bytes
+[192-207]: 45 bytes
+[208-223]: 38 bytes
+[224-239]: 38 bytes
+[240-255]: 49 bytes
+Saved processed data to aes_ctr_test_rule30_iter10.bin
+
+Applying CA Rule 82 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 39 bytes
+[16-31]: 55 bytes
+[32-47]: 34 bytes
+[48-63]: 42 bytes
+[64-79]: 44 bytes
+[80-95]: 34 bytes
+[96-111]: 28 bytes
+[112-127]: 58 bytes
+[128-143]: 41 bytes
+[144-159]: 46 bytes
+[160-175]: 42 bytes
+[176-191]: 43 bytes
+[192-207]: 31 bytes
+[208-223]: 35 bytes
+[224-239]: 38 bytes
+[240-255]: 28 bytes
+Saved processed data to aes_ctr_test_rule82_iter1.bin
+
+Applying CA Rule 82 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 27 bytes
+[16-31]: 47 bytes
+[32-47]: 44 bytes
+[48-63]: 28 bytes
+[64-79]: 37 bytes
+[80-95]: 41 bytes
+[96-111]: 44 bytes
+[112-127]: 45 bytes
+[128-143]: 38 bytes
+[144-159]: 37 bytes
+[160-175]: 33 bytes
+[176-191]: 47 bytes
+[192-207]: 35 bytes
+[208-223]: 51 bytes
+[224-239]: 39 bytes
+[240-255]: 45 bytes
+Saved processed data to aes_ctr_test_rule82_iter3.bin
+
+Applying CA Rule 82 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 39 bytes
+[16-31]: 43 bytes
+[32-47]: 50 bytes
+[48-63]: 38 bytes
+[64-79]: 44 bytes
+[80-95]: 33 bytes
+[96-111]: 49 bytes
+[112-127]: 33 bytes
+[128-143]: 36 bytes
+[144-159]: 39 bytes
+[160-175]: 40 bytes
+[176-191]: 38 bytes
+[192-207]: 40 bytes
+[208-223]: 36 bytes
+[224-239]: 44 bytes
+[240-255]: 36 bytes
+Saved processed data to aes_ctr_test_rule82_iter5.bin
+
+Applying CA Rule 82 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 41 bytes
+[16-31]: 42 bytes
+[32-47]: 40 bytes
+[48-63]: 34 bytes
+[64-79]: 43 bytes
+[80-95]: 33 bytes
+[96-111]: 52 bytes
+[112-127]: 46 bytes
+[128-143]: 35 bytes
+[144-159]: 42 bytes
+[160-175]: 28 bytes
+[176-191]: 35 bytes
+[192-207]: 43 bytes
+[208-223]: 38 bytes
+[224-239]: 38 bytes
+[240-255]: 48 bytes
+Saved processed data to aes_ctr_test_rule82_iter10.bin
+
+Applying CA Rule 110 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 42 bytes
+[16-31]: 34 bytes
+[32-47]: 55 bytes
+[48-63]: 39 bytes
+[64-79]: 58 bytes
+[80-95]: 28 bytes
+[96-111]: 34 bytes
+[112-127]: 44 bytes
+[128-143]: 43 bytes
+[144-159]: 42 bytes
+[160-175]: 46 bytes
+[176-191]: 41 bytes
+[192-207]: 28 bytes
+[208-223]: 38 bytes
+[224-239]: 35 bytes
+[240-255]: 31 bytes
+Saved processed data to aes_ctr_test_rule110_iter1.bin
+
+Applying CA Rule 110 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 28 bytes
+[16-31]: 44 bytes
+[32-47]: 47 bytes
+[48-63]: 27 bytes
+[64-79]: 44 bytes
+[80-95]: 43 bytes
+[96-111]: 42 bytes
+[112-127]: 38 bytes
+[128-143]: 47 bytes
+[144-159]: 33 bytes
+[160-175]: 37 bytes
+[176-191]: 38 bytes
+[192-207]: 45 bytes
+[208-223]: 39 bytes
+[224-239]: 51 bytes
+[240-255]: 35 bytes
+Saved processed data to aes_ctr_test_rule110_iter3.bin
+
+Applying CA Rule 110 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 37 bytes
+[16-31]: 50 bytes
+[32-47]: 43 bytes
+[48-63]: 40 bytes
+[64-79]: 32 bytes
+[80-95]: 49 bytes
+[96-111]: 33 bytes
+[112-127]: 45 bytes
+[128-143]: 38 bytes
+[144-159]: 39 bytes
+[160-175]: 40 bytes
+[176-191]: 36 bytes
+[192-207]: 36 bytes
+[208-223]: 43 bytes
+[224-239]: 37 bytes
+[240-255]: 40 bytes
+Saved processed data to aes_ctr_test_rule110_iter5.bin
+
+Applying CA Rule 110 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 41 bytes
+[16-31]: 42 bytes
+[32-47]: 40 bytes
+[48-63]: 34 bytes
+[64-79]: 43 bytes
+[80-95]: 32 bytes
+[96-111]: 53 bytes
+[112-127]: 46 bytes
+[128-143]: 34 bytes
+[144-159]: 42 bytes
+[160-175]: 28 bytes
+[176-191]: 36 bytes
+[192-207]: 43 bytes
+[208-223]: 38 bytes
+[224-239]: 38 bytes
+[240-255]: 48 bytes
+Saved processed data to aes_ctr_test_rule110_iter10.bin
+
+Applying CA Rule 150 with 1 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 31 bytes
+[16-31]: 35 bytes
+[32-47]: 38 bytes
+[48-63]: 28 bytes
+[64-79]: 41 bytes
+[80-95]: 46 bytes
+[96-111]: 42 bytes
+[112-127]: 43 bytes
+[128-143]: 44 bytes
+[144-159]: 34 bytes
+[160-175]: 28 bytes
+[176-191]: 58 bytes
+[192-207]: 39 bytes
+[208-223]: 55 bytes
+[224-239]: 34 bytes
+[240-255]: 42 bytes
+Saved processed data to aes_ctr_test_rule150_iter1.bin
+
+Applying CA Rule 150 with 3 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 35 bytes
+[16-31]: 52 bytes
+[32-47]: 40 bytes
+[48-63]: 45 bytes
+[64-79]: 38 bytes
+[80-95]: 37 bytes
+[96-111]: 34 bytes
+[112-127]: 48 bytes
+[128-143]: 37 bytes
+[144-159]: 41 bytes
+[160-175]: 43 bytes
+[176-191]: 44 bytes
+[192-207]: 27 bytes
+[208-223]: 46 bytes
+[224-239]: 43 bytes
+[240-255]: 28 bytes
+Saved processed data to aes_ctr_test_rule150_iter3.bin
+
+Applying CA Rule 150 with 5 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 40 bytes
+[16-31]: 37 bytes
+[32-47]: 44 bytes
+[48-63]: 37 bytes
+[64-79]: 36 bytes
+[80-95]: 39 bytes
+[96-111]: 39 bytes
+[112-127]: 39 bytes
+[128-143]: 44 bytes
+[144-159]: 33 bytes
+[160-175]: 50 bytes
+[176-191]: 32 bytes
+[192-207]: 39 bytes
+[208-223]: 42 bytes
+[224-239]: 50 bytes
+[240-255]: 37 bytes
+Saved processed data to aes_ctr_test_rule150_iter5.bin
+
+Applying CA Rule 150 with 10 iterations...
+Processed data histogram:
+Byte value distribution (in 16 bins):
+[0-15]: 41 bytes
+[16-31]: 42 bytes
+[32-47]: 40 bytes
+[48-63]: 34 bytes
+[64-79]: 44 bytes
+[80-95]: 32 bytes
+[96-111]: 52 bytes
+[112-127]: 46 bytes
+[128-143]: 34 bytes
+[144-159]: 43 bytes
+[160-175]: 28 bytes
+[176-191]: 35 bytes
+[192-207]: 43 bytes
+[208-223]: 38 bytes
+[224-239]: 38 bytes
+[240-255]: 48 bytes
+Saved processed data to aes_ctr_test_rule150_iter10.bin
+PS C:\Users\phine\Documents\GitHub\caca\src>
