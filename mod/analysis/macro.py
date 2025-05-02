@@ -1,114 +1,131 @@
 """
-Macroeconomic analysis functions.
+Module for macroeconomic analysis functions.
 """
 import pandas as pd
 import numpy as np
+import yfinance as yf
 from datetime import datetime, timedelta
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from ..config import MACRO_LOOKBACK_DAYS, FORECAST_STEPS
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
 
-def prepare_macro_data():
+def prepare_macro_data(start_date=None, end_date=None):
     """
     Prepare macroeconomic data for analysis.
-    Downloads data for S&P 500, BTC-USD, and FRED M2 money supply.
-    
-    Returns:
-        DataFrame with normalized data for all three indicators
-    """
-    from ..data.fetcher import fetch_symbol_data, fetch_fred_data
-    from ..utils.data_utils import normalize_to_percentage_change
-    
-    end = datetime.today()
-    start = end - timedelta(days=MACRO_LOOKBACK_DAYS)
-    
-    # Get S&P 500 data
-    try:
-        df_spx = fetch_symbol_data("^GSPC", start=start)
-        spx_col = "Adj Close" if "Adj Close" in df_spx.columns else "Close"
-        if df_spx.empty or spx_col not in df_spx.columns:
-            print("Warning: ^GSPC macro chart missing data.")
-            return None
-    except Exception as e:
-        print(f"Error downloading S&P 500 data: {e}")
-        return None
-    
-    # Get Bitcoin data
-    try:
-        df_btc = fetch_symbol_data("BTC-USD", start=start)
-        btc_col = "Adj Close" if "Adj Close" in df_btc.columns else "Close"
-        if df_btc.empty or btc_col not in df_btc.columns:
-            print("Warning: BTC macro chart missing data.")
-            return None
-    except Exception as e:
-        print(f"Error downloading Bitcoin data: {e}")
-        return None
-    
-    # Get M2 data
-    try:
-        # Try to get M2 data from FRED
-        df_m2 = fetch_fred_data("M2SL", start)
-        if df_m2.empty or 'M2SL' not in df_m2.columns:
-            print("Warning: M2 data is empty. Using placeholder values.")
-            # Create empty DataFrame with same index as S&P
-            df_m2 = pd.DataFrame(index=df_spx.index)
-            df_m2['M2SL'] = np.nan
-    except Exception as e:
-        print(f"Warning: M2SL DataReader error: {e}")
-        # Create empty DataFrame with same index as S&P
-        df_m2 = pd.DataFrame(index=df_spx.index)
-        df_m2['M2SL'] = np.nan
-    
-    # Combine into a single DataFrame
-    df = pd.DataFrame({
-        "S&P 500": df_spx[spx_col],
-        "BTC": df_btc[btc_col],
-        "M2": df_m2["M2SL"]
-    })
-    
-    # Forward fill missing values and drop any completely empty rows
-    df = df.ffill().dropna(how='all')
-    if len(df) < 2:
-        print("Warning: Not enough macro data to process.")
-        return None
-        
-    # Normalize to percentage change from start
-    df_normalized = normalize_to_percentage_change(df)
-    
-    return df_normalized
-
-def generate_forecast(df_normalized, steps=FORECAST_STEPS):
-    """
-    Generate a forecast for S&P 500 based on exponential smoothing.
     
     Args:
-        df_normalized: DataFrame with normalized data
-        steps: Number of steps to forecast
+        start_date (str): Start date in YYYY-MM-DD format
+        end_date (str): End date in YYYY-MM-DD format
         
     Returns:
-        Series with forecasted values and index
+        pd.DataFrame: DataFrame with normalized macroeconomic data
     """
-    forecast = None
+    from mod.data.fetcher import fetch_symbol_data, fetch_fred_data
+    
     try:
-        if "S&P 500" in df_normalized.columns and len(df_normalized["S&P 500"].dropna()) > 10:
-            model = ExponentialSmoothing(
-                df_normalized["S&P 500"].dropna(), 
-                trend='add', 
-                seasonal=None,
-                initialization_method="estimated"
-            )
-            fit = model.fit()
-            forecast = fit.forecast(steps=steps)
-            
-            # Create proper index for forecast
-            last_date = df_normalized.index[-1]
-            forecast_index = pd.date_range(
-                last_date + pd.Timedelta(days=1), 
-                periods=len(forecast), 
-                freq='B'
-            )
-            forecast = pd.Series(forecast.values, index=forecast_index)
-    except Exception as e:
-        print(f"Forecast error: {e}")
-        forecast = None
+        # Set default dates if not provided
+        if not end_date:
+            end_date = datetime.now()
+        else:
+            end_date = pd.to_datetime(end_date)
         
-    return forecast
+        if not start_date:
+            start_date = end_date - timedelta(days=365*2)  # 2 years
+        else:
+            start_date = pd.to_datetime(start_date)
+            
+        # Calculate period string based on date range
+        days_diff = (end_date - start_date).days
+        
+        if days_diff <= 7:
+            period = "1wk"
+        elif days_diff <= 30:
+            period = "1mo" 
+        elif days_diff <= 90:
+            period = "3mo"
+        elif days_diff <= 180:
+            period = "6mo"
+        elif days_diff <= 365:
+            period = "1y"
+        elif days_diff <= 730:
+            period = "2y"
+        elif days_diff <= 1825:
+            period = "5y"
+        else:
+            period = "max"
+        
+        # Get S&P 500 data
+        try:
+            sp500_data = fetch_symbol_data('^GSPC', period=period)
+            if sp500_data is None or sp500_data.empty:
+                print("No S&P 500 data found")
+                return None
+            sp500 = sp500_data['Close']
+        except Exception as e:
+            print(f"Error downloading S&P 500 data: {e}")
+            return None
+        
+        # Get economic data
+        fred_series = {
+            'UNRATE': 'Unemployment Rate',
+            'CPIAUCSL': 'Consumer Price Index',
+            'FEDFUNDS': 'Federal Funds Rate',
+            'T10Y2Y': 'Treasury Yield Spread',
+            'MORTGAGE30US': 'Mortgage Rate'
+        }
+        
+        macro_data = {}
+        
+        for series_id, name in fred_series.items():
+            try:
+                data = fetch_fred_data(series_id)
+                if data is not None and not data.empty:
+                    # Resample to daily frequency and forward fill
+                    data = data.resample('D').ffill()
+                    macro_data[name] = data['value']
+            except Exception as e:
+                print(f"Error fetching {name} data: {e}")
+        
+        # Combine all data
+        df_combined = pd.DataFrame({'S&P 500': sp500})
+        
+        for name, series in macro_data.items():
+            # Align dates
+            if not series.empty:
+                df_combined[name] = series
+        
+        # Forward fill and backward fill missing values
+        df_combined = df_combined.fillna(method='ffill').fillna(method='bfill')
+        
+        # Normalize all series to 100 at the start
+        df_normalized = df_combined.div(df_combined.iloc[0]) * 100
+        
+        return df_normalized
+        
+    except Exception as e:
+        print(f"Warning: Could not prepare macro data for chart. {e}")
+        return None
+
+def generate_forecast(data, periods=30):
+    """
+    Generate a time series forecast using ARIMA model.
+    
+    Args:
+        data (pd.Series): Time series data to forecast
+        periods (int): Number of periods to forecast
+        
+    Returns:
+        tuple: (forecast, confidence intervals)
+    """
+    try:
+        # Create ARIMA model with auto-order selection
+        model = sm.tsa.ARIMA(data, order=(2,1,2))
+        fit = model.fit()
+        
+        # Generate forecast
+        forecast = fit.forecast(steps=periods)
+        conf_int = fit.get_forecast(steps=periods).conf_int()
+        
+        return forecast, conf_int
+    except Exception as e:
+        print(f"Error generating forecast: {e}")
+        return None, None

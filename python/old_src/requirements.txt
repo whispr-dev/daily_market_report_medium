@@ -1,0 +1,11 @@
+numpy
+pandas
+yfinance
+statsmodels
+jinja2
+matplotlib
+mplfinance
+base64
+traceback
+datetime
+

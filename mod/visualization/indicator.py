@@ -7,8 +7,8 @@ import mplfinance as mpf
 import pandas as pd
 import numpy as np
 import traceback
-from ..utils.image_utils import img_to_base64
-from ..config import DARK_BG_COLOR, GRID_COLOR, UP_COLOR, DOWN_COLOR, LINE_COLOR
+from mod.utils.image_utils import img_to_base64
+from mod.config import DARK_BG_COLOR, GRID_COLOR, UP_COLOR, DOWN_COLOR, LINE_COLOR
 
 def generate_enhanced_candlestick_chart(df=None):
     """

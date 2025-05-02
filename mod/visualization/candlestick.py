@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import mplfinance as mpf
 import pandas as pd
 import traceback
-from ..utils.image_utils import img_to_base64
-from ..config import DARK_BG_COLOR, GRID_COLOR, UP_COLOR, DOWN_COLOR
+from mod.utils.image_utils import img_to_base64
+from mod.config import DARK_BG_COLOR, GRID_COLOR, UP_COLOR, DOWN_COLOR
 
 def generate_candlestick_chart(df=None):
     """

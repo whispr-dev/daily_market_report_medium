@@ -2,7 +2,7 @@
 Data fetching functions for multiple asset classes beyond equities.
 """
 import yfinance as yf
-from ..utils.data_utils import clean_yfinance_dataframe
+from mod.utils.data_utils import clean_yfinance_dataframe
 
 def get_equity_market_data():
     """

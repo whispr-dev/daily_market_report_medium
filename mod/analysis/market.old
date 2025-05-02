@@ -1,0 +1,172 @@
+"""
+Module for market analysis functions.
+"""
+import pandas as pd
+import numpy as np
+import yfinance as yf
+from datetime import datetime, timedelta
+
+def calculate_percent_changes(symbols):
+    """
+    Calculate daily percent changes for the given symbols.
+    
+    Args:
+        symbols (list): List of stock symbols
+        
+    Returns:
+        pd.DataFrame: DataFrame with symbols and their percent changes
+    """
+    from mod.data.fetcher import fetch_symbol_data
+    
+    results = []
+    
+    # Check if input is already a DataFrame
+    if isinstance(symbols, pd.DataFrame):
+        # Extract symbols from DataFrame
+        if 'symbol' in symbols.columns:
+            symbols = symbols['symbol'].tolist()
+        else:
+            # Assume the DataFrame index contains symbols
+            symbols = symbols.index.tolist()
+    
+    # Process each symbol
+    for symbol in symbols:
+        try:
+            # Fetch data for the symbol
+            data = fetch_symbol_data(symbol, period="5d", interval="1d")
+            
+            if data is not None and not data.empty:
+                # Calculate percent changes
+                if len(data) >= 2:
+                    last_close = data['Close'].iloc[-1]
+                    prev_close = data['Close'].iloc[-2]
+                    pct_change = ((last_close - prev_close) / prev_close) * 100
+                    
+                    # Get additional data
+                    daily_high = data['High'].iloc[-1]
+                    daily_low = data['Low'].iloc[-1]
+                    volume = data['Volume'].iloc[-1] if 'Volume' in data.columns else 0
+                    
+                    results.append({
+                        'symbol': symbol,
+                        'last_price': last_close,
+                        'previous_close': prev_close,
+                        'daily_change': last_close - prev_close,
+                        'percent_change': pct_change,
+                        'daily_high': daily_high,
+                        'daily_low': daily_low,
+                        'volume': volume
+                    })
+                else:
+                    print(f"Not enough data for {symbol}")
+        except Exception as e:
+            print(f"Error calculating percent change for {symbol}: {e}")
+    
+    # Create DataFrame from results
+    df_results = pd.DataFrame(results)
+    
+    # Sort by percent change (descending)
+    if not df_results.empty:
+        df_results = df_results.sort_values('percent_change', ascending=False)
+    
+    return df_results
+
+def find_technical_patterns(symbols, pattern_type='all'):
+    """
+    Find technical patterns in the given symbols.
+    
+    Args:
+        symbols (list): List of stock symbols
+        pattern_type (str): Type of patterns to find ('all', 'bullish', 'bearish')
+        
+    Returns:
+        dict: Dictionary of symbols and their patterns
+    """
+    # Implementation goes here
+    # This is a placeholder that returns an empty dict
+    return {}
+
+def find_trading_opportunities(symbols, criteria='momentum'):
+    """
+    Find trading opportunities based on specified criteria.
+    
+    Args:
+        symbols (list): List of stock symbols
+        criteria (str): Criteria for finding opportunities ('momentum', 'value', 'trend')
+        
+    Returns:
+        pd.DataFrame: DataFrame with trading opportunities
+    """
+    # Implementation goes here
+    # This is a placeholder that returns an empty DataFrame
+    return pd.DataFrame()
+
+def get_market_summary():
+    """
+    Get a summary of the overall market conditions.
+    
+    Returns:
+        dict: Dictionary with market summary data
+    """
+    # Implementation goes here
+    # This is a placeholder that returns basic market info
+    indices = {
+        '^GSPC': 'S&P 500',
+        '^DJI': 'Dow Jones',
+        '^IXIC': 'NASDAQ',
+        '^VIX': 'Volatility Index'
+    }
+    
+    results = {}
+    
+    for symbol, name in indices.items():
+        try:
+            data = yf.download(symbol, period="5d", interval="1d", progress=False)
+            if not data.empty and len(data) >= 2:
+                last_close = data['Close'].iloc[-1]
+                prev_close = data['Close'].iloc[-2]
+                pct_change = ((last_close - prev_close) / prev_close) * 100
+                
+                results[name] = {
+                    'value': last_close,
+                    'change': last_close - prev_close,
+                    'percent_change': pct_change
+                }
+        except Exception as e:
+            print(f"Error getting data for {name}: {e}")
+    
+    return results
+
+def get_market_summary():
+    """
+    Get current S&P 500 market summary data.
+    
+    Returns:
+        dict with S&P 500 data including value, date, and percent change
+    """
+    from ..data.fetcher import fetch_symbol_data
+    
+    try:
+        spx = fetch_symbol_data("^GSPC", period='2d')
+        sp500_value = 0
+        sp500_pct_change = 0
+        sp500_date = ""
+        
+        if not spx.empty:
+            if 'Close' in spx.columns:
+                sp500_value = spx['Close'].iloc[-1]
+                sp500_date = str(spx.index[-1].date())
+                if len(spx) > 1:
+                    sp500_pct_change = (spx['Close'].iloc[-1] - spx['Close'].iloc[-2]) / spx['Close'].iloc[-2] * 100.0
+    except Exception as e:
+        print(f"Error getting S&P 500 data: {e}")
+        from datetime import datetime
+        sp500_value = "N/A"
+        sp500_pct_change = 0
+        sp500_date = datetime.today().strftime("%Y-%m-%d")
+        
+    return {
+        'value': sp500_value,
+        'date': sp500_date,
+        'pct_change': sp500_pct_change
+    }

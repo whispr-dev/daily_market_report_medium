@@ -1,25 +1,8 @@
 """
-Example of an __init__.py file to make each directory a proper Python package.
-
-Create a similar file in each of the following directories:
-- utils/
-- analysis/
-- visualization/
-- data/
-- reporting/
+Stock Market Analyzer package.
 """
-
-# utils/__init__.py
-"""Utility functions package."""
-
-# analysis/__init__.py
-"""Market analysis package."""
-
-# visualization/__init__.py
-"""Data visualization package."""
-
-# data/__init__.py
-"""Data fetching and processing package."""
-
-# reporting/__init__.py
-"""Report generation and delivery package."""
+# Import main modules to make imports cleaner
+from .analysis import analyze_technicals, calculate_ewo, detect_reversal_signals
+from .analysis import find_trading_opportunities, get_market_summary
+from .analysis import prepare_macro_data, generate_forecast
+from .analysis import analyze_dividend_history

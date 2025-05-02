@@ -1,171 +1,143 @@
-# Automailer: Daily Email with Custom Market Analysis
-20250325115224 Tue
+# Stock Market Analyzer Setup Guide
 
+This guide will help you set up and run the Stock Market Analyzer application which generates daily reports with technical analysis and visualizations.
 
-This repository automates a [daily] email that includes:
-- A custom stock analysis for certain tickers
-- 52-week high trackers
-- 200-day moving average (SMA) crossovers
-- S&P 500 reference data
+## Prerequisites
 
+- Python 3.8+ installed
+- Required Python packages (yfinance, pandas, matplotlib, etc.)
+- Email credentials for sending reports (optional)
 
-Originally inspired by [this Medium article](https://medium.com/@phitzi/automating-a-daily-email-with-custom-stock-analysis-with-python-b11eec1ab192).
+## Installation
 
-## Table of Contents
-1. [Overview](#overview)
-2. [Project Contents Explained](#project-contents-explained)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Scheduling (Optional)](#scheduling-optional)
-6. [License](#license)
+1. **Set up directory structure**
+   
+   Make sure your directory structure matches the one in the README:
 
+   ```
+   stock_analyzer/
+   ├── mod/
+   │   ├── __init__.py
+   │   ├── analysis/
+   │   │   ├── __init__.py
+   │   │   ├── technical.py
+   │   │   ├── market.py
+   │   │   ├── macro.py
+   │   │   └── dividend.py
+   │   ├── data/
+   │   │   ├── __init__.py
+   │   │   ├── fetcher.py
+   │   │   └── multi_asset.py
+   │   ├── utils/
+   │   │   ├── __init__.py
+   │   │   ├── image_utils.py
+   │   │   ├── data_utils.py
+   │   │   └── stock_universe_converter.py
+   │   ├── visualization/
+   │   │   ├── __init__.py
+   │   │   ├── candlestick.py
+   │   │   ├── indicators.py
+   │   │   ├── sector.py
+   │   │   ├── macro.py
+   │   │   ├── currency.py
+   │   │   └── comparison.py
+   │   ├── reporting/
+   │   │   ├── __init__.py
+   │   │   ├── html_generator.py
+   │   │   └── email_sender.py
+   │   ├── config.py
+   │   └── main_enhanced.py
+   ├── email_template.html
+   ├── output/
+   │   └── charts/
+   └── logs/
+   ```
 
----
+2. **Install dependencies**
 
-## 1. Overview
+   Run the dependency installation script:
 
-**Goal**: Automatically email a customized daily market report. You can tailor the stocks of interest, the email template, and the logic for detecting interesting market events (like 52-week highs or SMA crossovers).
+   ```
+   python install_Deps.py
+   ```
 
-**How It Works**:
-i. **`main.py`** reads a CSV file (`stocks_universe.csv`) to gather stock symbols.  
-ii. It uses [yfinance](https://github.com/ranaroussi/yfinance) to download historical price data for each ticker.
-iii. Each ticker is analyzed for:
-   - 52-week highs
-   - 200-day SMA crossovers
-iv. It also fetches S&P 500 (`^GSPC`) data for context.
-v. The results get rendered via a Jinja2 HTML template (`email_template.html`).
-vi. **`sendemail.py`** handles SMTP email sending, pulling credentials from environment variables (or a `.env` file using `python-dotenv`).
-vii. Finally, an email is generated and sent with the daily summary.
+   Or install them manually:
 
+   ```
+   pip install yfinance pandas numpy matplotlib mplfinance seaborn statsmodels pandas-datareader jinja2
+   ```
 
----
+3. **Setup Email (Optional)**
 
-## 2. Project Contents Explained
-root/ 
- ├── README.md # This README 
- ├── LICENSE # The license file 
- └── env/
-     ├── requirements.txt # Python dependencies 
-     ├── stocks_universe.csv # CSV of ticker symbols and associated data 
-     ├── email_template.html # HTML template for the emailed report 
-     ├── main.py # Main script that downloads data, analyzes, and triggers email 
-     ├── sendemail.py # Helper script to send the email via SMTP 
-     └── run_stonks.bat # (Optional) Windows batch file to run main.py on a schedule
+   Set the following environment variables for email functionality:
 
+   - `EMAILSENDER`: Your email address
+   - `EMAILPASSWORD`: Your email password or app-specific password
+   - `EMAILSMTP`: SMTP server (e.g., smtp.gmail.com)
+   - `EMAILPORT`: SMTP port (e.g., 587)
+   - `EMAILRECIPIENT`: Recipient email address(es), comma-separated
 
-### Files Explained In Detail
+   In Windows PowerShell:
+   ```
+   $env:EMAILSENDER="your-email@gmail.com"
+   $env:EMAILPASSWORD="your-password"
+   $env:EMAILSMTP="smtp.gmail.com"
+   $env:EMAILPORT="587"
+   $env:EMAILRECIPIENT="recipient@example.com"
+   ```
 
-i. **`main.py`**  
-   - The heart of the project.  
-   - Reads in `stocks_universe.csv`, filters relevant tickers, and downloads their market data via yfinance.  
-   - Analyzes each stock for 52-week highs and 200-day moving average crossovers.  
-   - Fetches S&P 500 data for reference.  
-   - Renders an HTML email using `email_template.html` and sends it via `send_email()`.
+   In Linux/Mac:
+   ```
+   export EMAILSENDER="your-email@gmail.com"
+   export EMAILPASSWORD="your-password"
+   export EMAILSMTP="smtp.gmail.com"
+   export EMAILPORT="587"
+   export EMAILRECIPIENT="recipient@example.com"
+   ```
 
-ii. **`sendemail.py`**  
-   - Handles SMTP connection and email-sending logic.  
-   - Pulls SMTP credentials and other settings from environment variables or a `.env` file, thanks to `python-dotenv`.  
-   - Expects these environment variables:
-     - `smtp_user`
-     - `SMTP_PASSWORD`
-     - `SMTP_SERVER`
-     - `SMTP_PORT`
-     - `SENDER_EMAIL`
-     - `TO_EMAIL`
+## Running the Application
 
-iii. **`email_template.html`**  
-   - A [Jinja2](https://palletsprojects.com/p/jinja/) HTML template.  
-   - Renders the S&P 500 stats, the 52-week high table, and the crossover table.  
-   - Also displays any errors in a separate section.
+To generate a stock market report:
 
-iv. **`stocks_universe.csv`**  
-   - A CSV listing all your ticker symbols plus additional metadata (CapCategory, sector, shortName, etc.).  
-   - `main.py` filters and loops through these tickers for the daily analysis.
+```
+python -m mod.main_enhanced
+```
 
-v. **`run_stonks.bat`**  
-   - A convenience file for Windows.  
-   - Can be scheduled via **Task Scheduler** to run `python main.py` automatically each day.  
-   - Typical content:
-     `bat`
-     `@echo off`
-     `cd /d "C:\path\to\your\project"` 
-     `python main.py`
-
-vi **`LICENSE`**  
-   - Indicates the project’s license terms (MIT, Apache, or otherwise).
-
-vii. **`requirements.txt`**  
-   - Lists all Python dependencies (e.g., `pandas`, `yfinance`, `jinja2`, `python-dotenv`), so you can `pip install -r requirements.txt` easily.
-
-
----
-
-## 3. Installation
-
-i. **Clone this repo** (or download as ZIP and extract).
-ii. **Install Python dependencies**:
-
-`pip install -r requirements.txt`
-Set up your environment variables (especially if using .env):
-
-### Example .env contents:
-`smtp_user=mysmtpuser`
-`SMTP_PASSWORD=mysecretpassword`
-`SMTP_SERVER=smtp.myserver.com`
-`SMTP_PORT=587`
-`SENDER_EMAIL=me@example.com`
-`TO_EMAIL=recipient@example.com`
-`Prepare stocks_universe.csv to include your desired tickers and metadata.`
-
-
----
-
-## 4. Usage
-To run the script manually:
-
-
-`python main.py`
 This will:
+1. Load stock universe
+2. Fetch market data
+3. Perform technical and fundamental analysis
+4. Generate visualizations
+5. Create an HTML report
+6. Send the report via email (if configured)
 
-Grab data from Yahoo Finance.
+## Troubleshooting
 
-Generate the HTML using Jinja2.
+If you encounter issues with visualization modules, run the visualization fix script:
 
-Send the daily email via the SMTP credentials you configured.
+```
+python simple_chart_fix.py
+```
 
-You’ll see console output indicating which tickers were processed and whether the email was successful.
+For other issues:
 
+1. Check all required directories and files are in place
+2. Ensure __init__.py files exist in each directory
+3. Verify email configuration if using email functionality
+4. Check the logs directory for error messages
 
----
+## Customization
 
-## 5. Scheduling (Optional)
-Windows Task Scheduler
-Create a .bat file (run_stonks.bat) with:
+- Edit `config.py` to customize chart styling and technical parameters
+- Create a `stocks_universe.csv` file with your preferred stocks
+- Modify `email_template.html` to change the report layout
 
-`@echo off`
-`cd /d "C:\path\to\this\repo"`
-`python main.py`
+## Additional Features
 
-Open Task Scheduler → Create Basic Task → Set daily trigger + point it to run_stonks.bat.
-
----
-
-Linux/macOS (Cron)
-Open crontab:
-
-`crontab -e`
-Add an entry to run once a day (say, at 9 AM):
-
-`0 9 * * * /usr/bin/python /path/to/main.py`
-
-Save. Cron will run the script automatically.
-
-
----
-
-## 6. License
-This project is released under the terms of the LICENSE file in this repository. Please see the license file for details.
-
+- **Multi-asset analysis**: The enhanced version supports stocks, ETFs, and forex
+- **Dividend analysis**: Track dividend performance and history
+- **Volatility comparison**: Compare volatility across different securities
+- **Forex tracking**: Monitor major currency pairs
 
 ---
 

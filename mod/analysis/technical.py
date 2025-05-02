@@ -3,7 +3,7 @@ Technical analysis functions for stock data.
 """
 import numpy as np
 import pandas as pd
-from ..config import EWO_FAST_PERIOD, EWO_SLOW_PERIOD, REVERSAL_SENSITIVITY, REVERSAL_LOOKBACK
+from mod.config import EWO_FAST_PERIOD, EWO_SLOW_PERIOD, REVERSAL_SENSITIVITY, REVERSAL_LOOKBACK
 
 def calculate_ewo(df, fast_period=EWO_FAST_PERIOD, slow_period=EWO_SLOW_PERIOD):
     """

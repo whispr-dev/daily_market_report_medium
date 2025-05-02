@@ -4,30 +4,31 @@ Main application entry point with multi-asset support.
 """
 import os
 import traceback
+import pandas as pd
 from datetime import datetime
 
 # Internal imports
-from config import ensure_directories_exist
+from mod.config import ensure_directories_exist
 
 # Data handling
-from data.fetcher import load_stock_universe
-from data.multi_asset import generate_multi_asset_report
+from mod.data.fetcher import fetch_symbol_data, load_stock_universe, fetch_stock_data, fetch_stock_info, fetch_market_data, fetch_stock_news
+from mod.data.multi_asset import generate_multi_asset_report
 
 # Analysis modules
-from analysis.market import calculate_percent_changes, find_technical_patterns, find_trading_opportunities, get_market_summary
-from analysis.dividend import analyze_dividend_history
+from mod.analysis.market import calculate_percent_changes, find_technical_patterns, find_trading_opportunities, get_market_summary
+from mod.analysis.dividend import analyze_dividend_history
 
 # Visualization modules
-from visualization.candlestick import generate_candlestick_chart
-from visualization.indicators import generate_enhanced_candlestick_chart
-from visualization.sector import generate_sector_heatmap
-from visualization.macro import generate_macro_chart
-from visualization.currency import generate_forex_chart
-from visualization.comparison import generate_volatility_comparison
+from mod.visualization.candlestick import generate_candlestick_chart
+from mod.visualization.indicators import generate_enhanced_candlestick_chart
+from mod.visualization.sector import generate_sector_heatmap
+from mod.visualization.macro import generate_macro_chart
+from mod.visualization.currency import generate_forex_chart
+from mod.visualization.comparison import generate_volatility_comparison
 
 # Reporting modules
-from reporting.html_generator import prepare_report_data, render_html_report, save_html_report
-from reporting.email_sender import send_report_email
+from mod.reporting.html_generator import prepare_report_data, render_html_report, save_html_report
+from mod.reporting.email_sender import send_report_email
 
 def main():
     """Main function to generate and send the enhanced daily market report."""
@@ -63,7 +64,7 @@ def main():
         multi_asset_data = generate_multi_asset_report()
         
         # Combine error lists
-        all_errors = technical_errors + trading_signals.get('errors', [])
+        all_errors = technical_errors + (trading_signals.get('errors', []) if isinstance(trading_signals, dict) and 'errors' in trading_signals else [])
 
         # 7) Get S&P 500 market summary
         print("Getting S&P 500 data...")
@@ -74,7 +75,46 @@ def main():
         candle_b64 = generate_candlestick_chart()
         
         print("Generating enhanced chart with reversal indicators...")
-        enhanced_b64 = generate_enhanced_candlestick_chart()
+        # Get data for a representative stock (e.g., the first one or SPY)
+        enhanced_b64 = None
+        if isinstance(df_universe, list):
+            # Handle if df_universe is a list
+            if len(df_universe) > 0:
+                # Use the first stock from the universe
+                representative_ticker = df_universe[0]
+                stock_data = fetch_symbol_data(representative_ticker, period="3mo", interval="1d")
+                
+                # Generate enhanced chart with the stock data if we got valid data
+                if stock_data is not None and not stock_data.empty:
+                    enhanced_b64 = generate_enhanced_candlestick_chart(
+                        df=stock_data, 
+                        ticker=representative_ticker,
+                        output_dir="output/charts"
+                    )
+        else:
+            # Handle if df_universe is a DataFrame
+            if isinstance(df_universe, pd.DataFrame) and len(df_universe) > 0 and 'symbol' in df_universe.columns:
+                # Use the first stock from the universe
+                representative_ticker = df_universe['symbol'].iloc[0]
+                stock_data = fetch_symbol_data(representative_ticker, period="3mo", interval="1d")
+                
+                # Generate enhanced chart with the stock data if we got valid data
+                if stock_data is not None and not stock_data.empty:
+                    enhanced_b64 = generate_enhanced_candlestick_chart(
+                        df=stock_data, 
+                        ticker=representative_ticker,
+                        output_dir="output/charts"
+                    )
+        
+        # Fallback to SPY if we couldn't generate an enhanced chart
+        if enhanced_b64 is None:
+            # Fallback to SPY if universe is empty
+            spy_data = fetch_symbol_data("SPY", period="3mo", interval="1d")
+            if spy_data is not None and not spy_data.empty:
+                enhanced_b64 = generate_enhanced_candlestick_chart(
+                    df=spy_data, 
+                    ticker="SPY",
+                    output_dir="output/charts")
         
         print("Generating sector heatmap...")
         heatmap_b64 = generate_sector_heatmap(df_universe)
@@ -100,8 +140,10 @@ def main():
         
         # Collect technical signals
         technical_signals = {
-            'fifty_two_week_high': fifty_two_week_high,
-            'crossover_200d': crossover_200d
+            'fifty_two_week_high': fifty_two_week_high if isinstance(fifty_two_week_high, list) else 
+                                  (fifty_two_week_high.to_dict('records') if hasattr(fifty_two_week_high, 'to_dict') else []),
+            'crossover_200d': crossover_200d if isinstance(crossover_200d, list) else 
+                             (crossover_200d.to_dict('records') if hasattr(crossover_200d, 'to_dict') else [])
         }
         
         # 9) Prepare expanded report data
@@ -115,11 +157,19 @@ def main():
             all_errors
         )
         
+        # Prepare the dividend_analysis properly depending on its type
+        if isinstance(dividend_analysis, dict):
+            dividend_data = dividend_analysis
+        elif hasattr(dividend_analysis, 'to_dict'):
+            dividend_data = dividend_analysis.to_dict('index')
+        else:
+            dividend_data = {}
+        
         # Add additional data from our new modules
         report_data.update({
-            'dividend_analysis': dividend_analysis.to_dict(),
-            'currency_data': multi_asset_data['currency'],
-            'etf_data': multi_asset_data['etfs'],
+            'dividend_analysis': dividend_data,
+            'currency_data': multi_asset_data.get('currency', {}),
+            'etf_data': multi_asset_data.get('etfs', {}),
             'forex_chart': forex_b64,
             'volatility_chart': volatility_b64
         })
@@ -131,3 +181,17 @@ def main():
         
         # Save a local copy of the report
         report_filename = save_html_report(html_output)
+        
+        # 11) Send the report
+        print("Sending report email...")
+        send_report_email(html_output)
+        
+        print("Enhanced Daily Market Report completed successfully!")
+        print(f"Report saved locally as {report_filename}")
+        
+    except Exception as e:
+        print(f"Error generating report: {e}")
+        traceback.print_exc()
+        
+if __name__ == "__main__":
+    main()
