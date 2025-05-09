@@ -1,0 +1,403 @@
+# DailyStonks Market Analysis System
+
+A complete system for generating and sending AI-powered market analysis reports.
+
+## Overview
+
+DailyStonks Market Analysis System fetches market data, performs technical analysis, generates visualizations, and sends reports to subscribers. The system includes:
+
+- Data fetching and analysis modules
+- Chart generation with watermarking
+- Email report distribution
+- PayPal subscription management
+- Unsubscribe handling
+- Security features to protect premium content
+
+## System Architecture
+
+The system consists of several components:
+
+1. **Main Application** - Handles report generation, access control, and report viewing
+2. **PayPal Webhook Server** - Processes subscription notifications from PayPal
+3. **Unsubscribe Server** - Handles unsubscribe requests from subscribers
+4. **Background Tasks** - Scheduled report generation and email sending
+5. **Nginx** - Web server for routing requests and serving static content
+
+## Directory Structure
+
+```
+dailystonks/
+├── logs/               # Log files
+├── cache/              # Cached reports
+├── reports/            # Generated reports
+├── charts/             # Generated charts
+├── data/               # Data files
+├── templates/          # Email templates
+├── static/             # Static web files
+├── venv/               # Virtual environment
+├── .env                # Environment variables
+└── mod/                # Python modules
+    ├── analysis/       # Analysis modules
+    ├── data/           # Data fetching modules
+    ├── reporting/      # Reporting modules
+    ├── utils/          # Utility modules
+    └── visualization/  # Visualization modules
+```
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8+
+- Nginx
+- Redis (for background tasks)
+- PayPal Developer Account (for subscription handling)
+
+### Installation Steps
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/yourusername/dailystonks.git
+   cd dailystonks
+   ```
+
+2. Run the deployment script:
+   ```bash
+   chmod +x deploy_guide.sh
+   ./deploy_guide.sh deploy
+   ```
+
+3. Edit the `.env` file with your credentials:
+   ```bash
+   nano .env
+   ```
+
+4. Copy your Python files to the appropriate locations.
+
+5. Start the services:
+   ```bash
+   ./deploy.sh all
+   ```
+
+## Running the Services
+
+### Starting Services
+
+To start all services:
+```bash
+./deploy.sh all
+```
+
+To start individual services:
+```bash
+./deploy.sh paypal    # Start PayPal webhook server
+./deploy.sh unsubscribe  # Start unsubscribe server
+./deploy.sh main      # Start main application
+./deploy.sh celery    # Start background tasks
+./deploy.sh nginx     # Configure and reload nginx
+```
+
+### Stopping Services
+
+To stop all services:
+```bash
+./stop.sh all
+```
+
+To stop individual services:
+```bash
+./stop.sh paypal      # Stop PayPal webhook server
+./stop.sh unsubscribe  # Stop unsubscribe server
+./stop.sh main        # Stop main application
+./stop.sh celery      # Stop background tasks
+```
+
+### Checking Status
+
+To check the status of all services:
+```bash
+./status.sh
+```
+
+### Viewing Logs
+
+To view logs for a service:
+```bash
+./logs.sh paypal      # View PayPal webhook server logs
+./logs.sh unsubscribe  # View unsubscribe server logs
+./logs.sh main        # View main application logs
+./logs.sh nginx       # View nginx logs
+./logs.sh celery      # View Celery logs
+```
+
+## Manual Operations
+
+### Generating Reports
+
+To manually generate a report:
+```bash
+./generate_report.sh [tier]  # Generate report for specified tier (Free, Basic, Pro)
+```
+
+### Sending Reports
+
+To manually send reports to subscribers:
+```bash
+./send_report.sh [tier]  # Send reports for specified tier (Free, Basic, Pro)
+```
+
+### Cleaning Up Old Reports
+
+To clean up old reports:
+```bash
+./cleanup_reports.sh [days]  # Clean reports older than specified days (default: 7)
+```
+
+### Health Check
+
+To check system health:
+```bash
+./health_check.sh
+```
+
+## Subscription Management
+
+### PayPal Integration
+
+1. Create a PayPal Developer account
+2. Set up a webhook in the PayPal Developer Dashboard
+3. Configure subscription plans in PayPal
+4. Update the `.env` file with your PayPal credentials
+
+### Mailing List Management
+
+Subscribers are stored in `mailing_list.txt`. Each line should contain one email address.
+
+### Unsubscribe Handling
+
+Unsubscribe tokens are generated for each subscriber and included in emails. When a subscriber clicks the unsubscribe link, the unsubscribe server verifies the token and removes the email from the mailing list.
+
+## Security Features
+
+DailyStonks implements several security features to protect premium content:
+
+1. **Access Tokens** - Secure, time-limited tokens for accessing premium content
+2. **Image Watermarking** - Subtle watermarks on charts that identify the subscriber
+3. **Rate Limiting** - The email sending system has rate limiting to prevent abuse
+4. **Signature Verification** - PayPal webhooks are verified using their signature system
+5. **Subscriber IDs** - Unique, deterministic IDs for subscribers that can't be guessed
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Services not starting**
+   - Check logs for errors: `./logs.sh [service]`
+   - Verify environment variables in `.env`
+   - Ensure ports are not already in use
+
+2. **PayPal webhooks not working**
+   - Verify webhook URL in PayPal Developer Dashboard
+   - Check PayPal credentials in `.env`
+   - Ensure webhook server is running
+
+3. **Emails not sending**
+   - Check email credentials in `.env`
+   - Verify mailing list contains valid emails
+   - Check rate limits with your email provider
+
+4. **Report generation failing**
+   - Check data fetching errors in logs
+   - Ensure network connectivity for fetching market data
+   - Verify dependencies are installed correctly
+
+### Log Locations
+
+- **PayPal Webhook Server**: `logs/gunicorn/paypal_*.log`
+- **Unsubscribe Server**: `logs/gunicorn/unsubscribe_*.log`
+- **Main Application**: `logs/gunicorn/main_*.log`
+- **Celery**: `logs/celery_*.log`
+- **Nginx**: `/var/log/nginx/dailystonks.*.log`
+
+## Maintenance Tasks
+
+### Regular Maintenance
+
+1. **Backup mailing list**:
+   ```bash
+   cp mailing_list.txt mailing_list_backup_$(date +%Y%m%d).txt
+   ```
+
+2. **Clean up old reports**:
+   ```bash
+   ./cleanup_reports.sh 30  # Keep reports for 30 days
+   ```
+
+3. **Check system health**:
+   ```bash
+   ./health_check.sh
+   ```
+
+4. **Monitor disk space**:
+   ```bash
+   df -h
+   ```
+
+5. **Rotate logs**:
+   ```bash
+   find logs -name "*.log" -size +100M -exec gzip {} \;
+   ```
+
+### Upgrading
+
+1. Stop all services:
+   ```bash
+   ./stop.sh all
+   ```
+
+2. Backup your files:
+   ```bash
+   tar -czvf dailystonks_backup_$(date +%Y%m%d).tar.gz *
+   ```
+
+3. Pull the latest changes:
+   ```bash
+   git pull
+   ```
+
+4. Start all services:
+   ```bash
+   ./deploy.sh all
+   ```
+
+## File Descriptions
+
+### Core Files
+
+- **main_enhanced.py** - Main report generation logic
+- **paypal_webhook.py** - PayPal webhook handler
+- **unsubscribe_server.py** - Unsubscribe handler
+- **subscription_access.py** - Access control middleware
+- **gunicorn_config.py** - Gunicorn configuration
+
+### Templates
+
+- **email_template.html** - Template for market reports
+- **welcome_email.html** - Template for welcome emails
+- **unsubscribe_result.html** - Template for unsubscribe confirmation
+
+### Scripts
+
+- **deploy.sh** - Main deployment script
+- **stop.sh** - Script to stop services
+- **status.sh** - Script to check service status
+- **logs.sh** - Script to view logs
+- **startup.sh** - Script to start services on boot
+- **generate_report.sh** - Script to manually generate reports
+- **send_report.sh** - Script to manually send reports
+- **cleanup_reports.sh** - Script to clean up old reports
+- **health_check.sh** - Script to check system health
+
+## Environment Variables
+
+The `.env` file contains the following environment variables:
+
+### Email Configuration
+- `EMAIL_SENDER` - Email sender address
+- `EMAIL_PASSWORD` - Email sender password
+- `EMAIL_SMTP` - SMTP server address
+- `EMAIL_PORT` - SMTP server port
+- `EMAIL_RATE_LIMIT` - Maximum emails per period
+- `EMAIL_RATE_PERIOD` - Rate limit period in seconds
+
+### PayPal Configuration
+- `PAYPAL_WEBHOOK_ID` - PayPal webhook ID
+- `PAYPAL_CLIENT_ID` - PayPal client ID
+- `PAYPAL_CLIENT_SECRET` - PayPal client secret
+- `PAYPAL_API_URL` - PayPal API URL
+
+### Security
+- `SECRET_KEY` - Secret key for tokens
+- `SECRET_SALT` - Salt for subscriber IDs
+- `ACCESS_TOKEN_SECRET` - Secret for access tokens
+
+### Server Configuration
+- `BASE_URL` - Base URL for the application
+- `GUNICORN_BIND` - Gunicorn bind address
+- `GUNICORN_WORKERS` - Number of Gunicorn workers
+- `GUNICORN_LOG_LEVEL` - Gunicorn log level
+- `GUNICORN_ERROR_LOG` - Gunicorn error log path
+- `GUNICORN_ACCESS_LOG` - Gunicorn access log path
+
+### Background Tasks
+- `CELERY_BROKER_URL` - Celery broker URL
+- `CELERY_RESULT_BACKEND` - Celery result backend URL
+
+## Dependencies
+
+### Python Dependencies
+- Flask - Web framework
+- Gunicorn - WSGI HTTP server
+- Pandas - Data analysis library
+- NumPy - Numerical computing library
+- Matplotlib - Plotting library
+- mplfinance - Financial plotting library
+- yfinance - Yahoo Finance API
+- Premailer - CSS inlining for emails
+- Celery - Distributed task queue
+- Redis - Message broker for Celery
+
+### System Dependencies
+- Python 3.8+
+- Nginx
+- Redis
+
+## License
+
+This project is proprietary software owned by Whispr.dev.
+
+## Support
+
+For support, please contact support@whispr.dev.
+
+---
+
+## Quick Start Guide
+
+1. **Initial Setup**:
+   ```bash
+   git clone https://github.com/yourusername/dailystonks.git
+   cd dailystonks
+   chmod +x deploy_guide.sh
+   ./deploy_guide.sh deploy
+   ```
+
+2. **Configure Environment**:
+   ```bash
+   nano .env  # Edit with your credentials
+   ```
+
+3. **Start Services**:
+   ```bash
+   ./deploy.sh all
+   ```
+
+4. **Verify Status**:
+   ```bash
+   ./status.sh
+   ```
+
+5. **Generate First Report**:
+   ```bash
+   ./generate_report.sh Basic
+   ```
+
+6. **Send Reports**:
+   ```bash
+   ./send_report.sh Basic
+   ```
+
+That's it! Your DailyStonks Market Analysis System is now up and running.
+
+
+## Licence: Hybrid MIT / CC0 licencing as dictaed in the associated document in this file structure.

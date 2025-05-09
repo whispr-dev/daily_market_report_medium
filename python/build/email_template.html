@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Enhanced Market Report</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+          }
+          h1, h2, h3, h4 {
+            color: white;
+          }
+          p, li, td {
+            color: white;
+          }
+          a {
+            color: #89CFF0;
+          }
+          img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+          }
+        </style>
+    </head>
+<body>
+  <h1>Market Summary</h1>
+  <p>S&P 500: {{ sp500_value }} ({{ sp500_pct_change }}%) — {{ sp500_date }}</p>
+
+  <td style="color: {% if item.predicted > item.score %}lime{% elif item.predicted < item.score %}orangered{% else %}white{% endif %}; font-weight: bold;">
+    {{ item.predicted | round(1) }}
+  </td>
+  
+  {% if sentiment %}
+  <h2>🧠 Market Sentiment</h2>
+  <p>Today's tone: 
+    {% if sentiment > 0.5 %}<span style="color: lightgreen;">Greedy</span>
+    {% elif sentiment < -0.5 %}<span style="color: orangered;">Fearful</span>
+    {% else %}<span style="color: gold;">Neutral</span>{% endif %}
+    ({{ sentiment }})
+  </p>
+{% endif %}
+
+{% if dark_pool_alerts %}
+  <h2>🔍 Possible Dark Pool Activity</h2>
+  <ul>
+  {% for d in dark_pool_alerts %}
+    <li><strong>{{ d.ticker }}</strong> — Volume: {{ d.volume }} (Avg: {{ d.avg_volume }}) → {{ d.divergence }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+timestamp,ticker,volume,avg_volume,divergence
+2025-05-04T10:44:21Z,AAPL,12000000,7200000,stealth accumulation
+
+{% if regime_states %}
+  <h2>🔄 Market Regime States (via HMM)</h2>
+  <ul>
+  {% for r in regime_states %}
+    <li><strong>{{ r.ticker }}</strong>: {{ r.regime }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if kalman_smooth %}
+  <h2>🧮 Smoothed Prices (Kalman Filter)</h2>
+  <ul>
+  {% for entry in kalman_smooth %}
+    <li><strong>{{ entry.ticker }}</strong>: {{ entry.price }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+  <h2>Standard Candlestick</h2>
+  <img src="cid:candle_chart" alt="Candlestick Chart" />
+
+  <h2>Enhanced Chart</h2>
+  <img src="cid:enhanced_chart" alt="Enhanced Chart" />
+
+  <h2>Sector Heatmap</h2>
+  <img src="cid:heatmap" alt="Sector Heatmap" />
+
+  <h2>Macro Trends</h2>
+  <img src="cid:macro_chart" alt="Macro Chart" />
+
+  <h2>Forex Overview</h2>
+  <img src="cid:forex_chart" alt="Forex Chart" />
+
+  <h2>Volatility Comparison</h2>
+  <img src="cid:volatility_chart" alt="Volatility Comparison" />
+
+  {% if multi_timeframe_signals %}
+  <h2>🧭 Multi-Timeframe Confluence Signals</h2>
+  <ul>
+  {% for sig in multi_timeframe_signals %}
+    <li><strong>{{ sig.ticker }}</strong> - {{ sig.signal|capitalize }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if reversal_risk %}
+  <h2>⚠️ Reversal Risk Heatmap</h2>
+  <ul>
+    <li style="color: red;">High Risk: {{ reversal_risk.high_risk | length }} stocks — {{ reversal_risk.high_risk | join(', ') }}</li>
+    <li style="color: green;">Low Risk: {{ reversal_risk.low_risk | length }} stocks — {{ reversal_risk.low_risk | join(', ') }}</li>
+    <li>Neutral: {{ reversal_risk.neutral | length }}</li>
+  </ul>
+{% endif %}
+
+{% if bayesian_outlook %}
+  <h2>🔮 Bayesian Trend Forecast (5d)</h2>
+  <table>
+    <thead><tr><th>Ticker</th><th>Forecast Price</th><th>95% Interval</th></tr></thead>
+    <tbody>
+    {% for o in bayesian_outlook %}
+      <tr>
+        <td>{{ o.ticker }}</td>
+        <td>{{ o.forecast | round(2) }}</td>
+        <td>{{ o.range }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if anomaly_alerts %}
+  <h2>🧠 Market Anomaly Detector</h2>
+  <p>Top 5 tickers showing unusual recent patterns:</p>
+  <ul>
+  {% for a in anomaly_alerts %}
+    <li><strong>{{ a[0] }}</strong>: Anomaly score {{ a[1] | round(4) }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if whispr_composite %}
+  <h2>🧠 Whispr Edge™ Composite Scores</h2>
+  <table>
+    <thead><tr><th>Ticker</th><th>Score</th><th>Factors</th></tr></thead>
+    <tbody>
+    {% for stock in whispr_composite[:10] %}
+      <tr>
+        <td><strong>{{ stock.ticker }}</strong></td>
+        <td style="color: {% if stock.edge_score > 75 %}lightgreen{% elif stock.edge_score > 50 %}gold{% else %}orangered{% endif %}; font-weight: bold;">
+          {{ stock.edge_score }}
+        </td>
+        <td>{{ stock.explanation | join(", ") }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if forecast_overlay %}
+  <h2>🔮 AI Forecast Overlay</h2>
+  <table>
+    <thead><tr><th>Ticker</th><th>Forecast (Next 5d)</th></tr></thead>
+    <tbody>
+    {% for f in forecast_overlay %}
+      <tr>
+        <td>{{ f.ticker }}</td>
+        <td style="color: {% if f.slope > 0 %}lightgreen{% elif f.slope < 0 %}orangered{% else %}white{% endif %};">
+          {{ f.slope }}%
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if relative_strength %}
+  <h2>📈 Relative Strength Rankings (vs S&P)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Ticker</th>
+        <th>Stock %Δ</th>
+        <th>S&P %Δ</th>
+        <th>RS Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for stock in relative_strength[:10] %}
+      <tr>
+        <td><strong>{{ stock.ticker }}</strong></td>
+        <td>{{ stock.stock_return }}%</td>
+        <td>{{ stock.bench_return }}%</td>
+        <td>{{ stock.rs_score }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if whispr_edge %}
+  <h2>🌐 Whispr Edge™ Score Rankings</h2>
+  <table>
+    <thead>
+      <tr><th>Ticker</th><th>Edge Score</th><th>Reasons</th></tr>
+    </thead>
+    <tbody>
+      {% for item in whispr_edge[:10] %}
+      <tr>
+        <td><strong>{{ item.ticker }}</strong></td>
+        <td>{{ item.score }}</td>
+        <td>{{ item.reasons | join(', ') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if whispr_edge %}
+  <h2>🌐 Whispr Edge™ Score Rankings</h2>
+  <table>
+    <thead>
+      <tr><th>Ticker</th><th>Edge Score</th><th>Δ Trend</th><th>Reasons</th></tr>
+    </thead>
+    <tbody>
+      {% for item in whispr_edge[:10] %}
+      <tr>
+        <td><strong>{{ item.ticker }}</strong></td>
+        <td style="color: {% if item.score > 75 %}lightgreen{% elif item.score > 50 %}gold{% else %}orangered{% endif %}; font-weight: bold;">
+          {{ item.score }}
+        </td>
+        <td>
+          {% if item.delta is not none %}
+            {% if item.delta > 0 %}+{{ item.delta }}{% elif item.delta < 0 %}{{ item.delta }}{% else %}0{% endif %}
+          {% else %}
+            —
+          {% endif %}
+        </td>
+        <td>{{ item.reasons | join(', ') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+
+{% if volatility_squeezes %}
+  <h2>💣 Volatility Squeeze Candidates</h2>
+  <ul>
+    {% for squeeze in volatility_squeezes %}
+      <li><strong>{{ squeeze.ticker }}</strong> — BB Width: {{ squeeze.bb_width }}, ATR: {{ squeeze.atr_norm }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+  <h2>52-Week Highs</h2>
+  {% if fifty_two_week_high %}
+    <ul>
+      {% for stock in fifty_two_week_high %}
+        <li>{{ stock.symbol }}: {{ stock.close }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No 52-week highs today.</p>
+  {% endif %}
+
+  <h2>200-Day MA Crossovers</h2>
+  {% if crossover_200d %}
+    <ul>
+      {% for stock in crossover_200d %}
+        <li>{{ stock.symbol }}: {{ stock.close }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No crossovers today.</p>
+  {% endif %}
+
+  <h2>Buy Signals</h2>
+  {% if buy_signals %}
+    <ul>
+      {% for signal in buy_signals %}
+        <li>{{ signal.symbol }}: {{ signal.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No buy signals.</p>
+  {% endif %}
+
+  <h2>Sell Signals</h2>
+  {% if sell_signals %}
+    <ul>
+      {% for signal in sell_signals %}
+        <li>{{ signal.symbol }}: {{ signal.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No sell signals.</p>
+  {% endif %}
+
+  <h2>Dividends</h2>
+  {% if dividend_analysis %}
+    <ul>
+      {% for sym, div in dividend_analysis.items() %}
+        <li>{{ sym }}: Yield {{ div.yield }}%, Payout {{ div.payout_ratio }}%</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No dividend info available.</p>
+  {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to DailyStonks Market Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      padding: 30px;
+      border-radius: 8px;
+    }
+    h1 {
+      color: #9cf;
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: #9cf;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    ul {
+      margin-bottom: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .cta {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      display: inline-block;
+      padding: 14px 28px;
+      background-color: #00aaff;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .footer {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #333;
+      text-align: center;
+    }
+    .feature {
+      margin-bottom: 30px;
+    }
+    .feature-icon {
+      font-size: 24px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    .tier-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+    .tier-free {
+      background-color: #555;
+      color: white;
+    }
+    .tier-basic {
+      background-color: #0088cc;
+      color: white;
+    }
+    .tier-pro {
+      background-color: #ffaa00;
+      color: black;
+    }
+    .highlight {
+      background-color: rgba(0, 170, 255, 0.2);
+      padding: 20px;
+      border-radius: 6px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📈 Welcome to DailyStonks Market Analysis!</h1>
+    
+    {% if tier == 'Pro' %}
+    <p>Hi {{ email }}, <span class="tier-badge tier-pro">Pro Plan</span></p>
+    <p>Thank you for subscribing to the DailyStonks Pro Plan! You now have access to our full suite of AI-powered market analysis tools and reports.</p>
+    {% elif tier == 'Basic' %}
+    <p>Hi {{ email }}, <span class="tier-badge tier-basic">Basic Plan</span></p>
+    <p>Thank you for subscribing to the DailyStonks Basic Plan! You now have access to our essential market analysis tools and reports.</p>
+    {% else %}
+    <p>Hi {{ email }}, <span class="tier-badge tier-free">Free Plan</span></p>
+    <p>Thank you for signing up for DailyStonks Free Plan! You now have limited access to our market analysis tools.</p>
+    {% endif %}
+    
+    <div class="highlight">
+      <p>Your first report will arrive after the next market close. Get ready for data-driven insights that can help inform your trading decisions!</p>
+    </div>
+    
+    <h2>What You'll Get</h2>
+    
+    <div class="feature">
+      <span class="feature-icon">📊</span>
+      <strong>Daily Candlestick Charts</strong>
+      <p>Visualize market movements with professionally styled candlestick charts, optimized for dark mode viewing.</p>
+    </div>
+    
+    <div class="feature">
+      <span class="feature-icon">🔥</span>
+      <strong>Sector Heatmaps</strong>
+      <p>Track sector performance at a glance with our intuitive heatmap visualization.</p>
+    </div>
+    
+    {% if tier != 'Free' %}
+    <div class="feature">
+      <span class="feature-icon">📈</span>
+      <strong>Technical Signals</strong>
+      <p>Identify stocks reaching 52-week highs and crossing above 200-day moving averages.</p>
+    </div>
+    {% endif %}
+    
+    {% if tier == 'Pro' %}
+    <div class="feature">
+      <span class="feature-icon">💹</span>
+      <strong>Buy/Sell Signals</strong>
+      <p>Get actionable trading opportunities based on our algorithmic analysis.</p>
+    </div>
+    
+    <div class="feature">
+      <span class="feature-icon">🌎</span>
+      <strong>Forex & Crypto Insights</strong>
+      <p>Extend your market view with currency pair analysis and cryptocurrency trends.</p>
+    </div>
+    {% endif %}
+    
+    <a href="https://whispr.dev/dashboard?subscriber_id={{ subscriber_id }}" class="cta">Visit Your Dashboard</a>
+    
+    <h2>Your Subscription Details</h2>
+    <ul>
+      {% if tier == 'Pro' %}
+      <li><strong>Plan:</strong> Pro</li>
+      <li><strong>Features:</strong> All charts, indicators, signals, and multi-asset analysis</li>
+      <li><strong>Frequency:</strong> Daily reports (Monday-Friday)</li>
+      {% elif tier == 'Basic' %}
+      <li><strong>Plan:</strong> Basic</li>
+      <li><strong>Features:</strong> Core charts, indicators, and sector analysis</li>
+      <li><strong>Frequency:</strong> Daily reports (Monday-Friday)</li>
+      {% else %}
+      <li><strong>Plan:</strong> Free</li>
+      <li><strong>Features:</strong> Basic charts and market summary</li>
+      <li><strong>Frequency:</strong> Weekly report (Friday only)</li>
+      {% endif %}
+    </ul>
+    
+    {% if tier != 'Pro' %}
+    <div class="highlight">
+      <h3>Upgrade for More Insights</h3>
+      <p>Get access to our full suite of market analysis tools by upgrading to the {{ 'Pro' if tier == 'Basic' else 'Basic' }} plan.</p>
+      <a href="https://whispr.dev/upgrade?subscriber_id={{ subscriber_id }}" class="cta">Upgrade Now</a>
+    </div>
+    {% endif %}
+    
+    <div class="footer">
+      <p>© 2025 DailyStonks by Whispr.dev — Built with pure code & stochastic foresight.</p>
+      <p>This email was sent to {{ email }}.</p>
+      <p>To unsubscribe, <a href="https://whispr.dev/unsubscribe?email={{ email }}&token={{ unsubscribe_token }}" style="color: #888;">click here</a>.</p>
+      <p><small>Not financial advice. Always conduct your own research before making investment decisions.</small></p>
+    </div>
+  </div>
+</body>
+</html>

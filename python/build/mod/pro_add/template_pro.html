@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>DailyStonks Pro Market Report</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            margin: 0;
+            padding: 0;
+          }
+          h1, h2, h3, h4 {
+            color: white;
+            margin-top: 25px;
+            margin-bottom: 15px;
+          }
+          p, li, td {
+            color: white;
+            line-height: 1.5;
+          }
+          a {
+            color: #89CFF0;
+          }
+          img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            border: 1px solid #333;
+          }
+          .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+          }
+          .header {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #333;
+          }
+          .header img {
+            max-width: 200px;
+            border: none;
+          }
+          .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            border: 1px solid #333;
+          }
+          .gold-badge {
+            display: inline-block;
+            background-color: #ffaa00;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 10px;
+            font-size: 14px;
+          }
+          .chart-container {
+            margin: 20px 0;
+          }
+          .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+          }
+          .data-table th {
+            background-color: #333;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #444;
+          }
+          .data-table td {
+            padding: 10px;
+            border: 1px solid #444;
+          }
+          .data-table tr:nth-child(even) {
+            background-color: #222;
+          }
+          .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+          }
+          .badge-green {
+            background-color: #4dfd5d;
+            color: #000;
+          }
+          .badge-red {
+            background-color: #fd4d4d;
+            color: #fff;
+          }
+          .badge-yellow {
+            background-color: #ffaa00;
+            color: #000;
+          }
+          .badge-blue {
+            background-color: #66ccff;
+            color: #000;
+          }
+          .insight-card {
+            background-color: #222;
+            border-left: 4px solid #66ccff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+          }
+          .insight-card h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+          }
+          .insight-card p {
+            margin: 0;
+          }
+          .sentiment-pill {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+          }
+          .sentiment-bullish {
+            background-color: rgba(77, 253, 93, 0.2);
+            color: #4dfd5d;
+            border: 1px solid #4dfd5d;
+          }
+          .sentiment-bearish {
+            background-color: rgba(253, 77, 77, 0.2);
+            color: #fd4d4d;
+            border: 1px solid #fd4d4d;
+          }
+          .sentiment-neutral {
+            background-color: rgba(255, 170, 0, 0.2);
+            color: #ffaa00;
+            border: 1px solid #ffaa00;
+          }
+          .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #66ccff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin: 10px 0;
+          }
+          .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #888;
+          }
+          .advanced-badge {
+            background-color: rgba(102, 204, 255, 0.2);
+            color: #66ccff;
+            border: 1px solid #66ccff;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 10px;
+            vertical-align: middle;
+            font-weight: bold;
+            margin-left: 5px;
+          }
+        </style>
+    </head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="cid:logo" alt="DailyStonks Logo">
+      <h1>Market Analysis Report <span class="gold-badge">PRO</span></h1>
+      <p>{{ sp500_date }}</p>
+    </div>
+
+    <div class="section">
+      <h2>Market Summary</h2>
+      <p>S&P 500: {{ sp500_value }} ({{ sp500_pct_change }}%)</p>
+      
+      <div class="chart-container">
+        <h3>Enhanced Candlestick Analysis</h3>
+        <img src="cid:enhanced_chart" alt="Enhanced Candlestick Chart">
+        <p>Our enhanced chart features reversal indicators, volume analysis, and Elliott Wave oscillator for improved market insight.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sector Performance <span class="advanced-badge">PRO</span></h2>
+      <div class="chart-container">
+        <img src="cid:heatmap" alt="Sector Heatmap">
+      </div>
+      <p>Sector breakdown shows {{ sector_analysis_summary }}</p>
+    </div>
+
+    <div class="section">
+      <h2>AI Market Insights <span class="advanced-badge">PRO</span></h2>
+      
+      {% if ai_insights and ai_insights.insights %}
+        {% for insight in ai_insights.insights %}
+          <div class="insight-card">
+            <h4>{{ insight.theme }} 
+              <span class="badge {% if insight.impact > 6 %}badge-green{% elif insight.impact > 4 %}badge-yellow{% else %}badge-blue{% endif %}">
+                {{ insight.timeframe }}
+              </span>
+            </h4>
+            <p>{{ insight.description }}</p>
+            <p style="margin-top: 10px; font-size: 12px;">
+              Confidence: {{ insight.confidence }}% | 
+              Impact: {{ insight.impact }}/10 | 
+              Sectors: {{ insight.affected_sectors|join(', ') }}
+            </p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No AI insights available for today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Anomaly Detection <span class="advanced-badge">PRO</span></h2>
+      
+      {% if anomaly_detection and anomaly_detection.anomalies %}
+        <p>Our algorithms detected {{ anomaly_detection.anomaly_count }} anomalies across {{ anomaly_detection.monitored_tickers }} monitored tickers:</p>
+        
+        <table class="data-table">
+          <tr>
+            <th>Ticker</th>
+            <th>Anomaly Type</th>
+            <th>Deviation</th>
+            <th>Significance</th>
+          </tr>
+          {% for anomaly in anomaly_detection.anomalies %}
+            <tr>
+              <td>{{ anomaly.ticker }}</td>
+              <td>{{ anomaly.anomaly_type }}</td>
+              <td>{{ anomaly.deviation|round(1) }}%</td>
+              <td>{{ anomaly.significance|round(1) }}/100</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No significant anomalies detected in today's trading.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Volume Profile Analysis <span class="advanced-badge">PRO</span></h2>
+      
+      {% if volume_profile %}
+        <div class="chart-container">
+          <img src="cid:volume_profile_chart" alt="Volume Profile Chart">
+        </div>
+        
+        <p>
+          <strong>Point of Control:</strong> {{ volume_profile.point_of_control|round(2) }}<br>
+          <strong>Value Area High:</strong> {{ volume_profile.value_area_high|round(2) }}<br>
+          <strong>Value Area Low:</strong> {{ volume_profile.value_area_low|round(2) }}
+        </p>
+      {% else %}
+        <p>Volume profile data not available for today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Asset Correlation <span class="advanced-badge">PRO</span></h2>
+      
+      {% if correlation_matrix %}
+        <div class="chart-container">
+          <img src="cid:correlation_chart" alt="Correlation Matrix Chart">
+        </div>
+        
+        {% if correlation_matrix.strongest_positive %}
+          <h4>Strongest Positive Correlations</h4>
+          <ul>
+            {% for pair in correlation_matrix.strongest_positive %}
+              <li>{{ pair.asset1 }} / {{ pair.asset2 }}: {{ pair.correlation|round(2) }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        
+        {% if correlation_matrix.strongest_negative %}
+          <h4>Strongest Negative Correlations</h4>
+          <ul>
+            {% for pair in correlation_matrix.strongest_negative %}
+              <li>{{ pair.asset1 }} / {{ pair.asset2 }}: {{ pair.correlation|round(2) }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% else %}
+        <p>Correlation analysis not available for today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Options Market Analysis <span class="advanced-badge">PRO</span></h2>
+      
+      {% if options_analysis %}
+        <div class="chart-container">
+          <img src="cid:options_chart" alt="Options Analysis Chart">
+        </div>
+        
+        <p>
+          <strong>Market Implied Volatility:</strong> {{ options_analysis.market_implied_volatility|round(2) }}<br>
+          <strong>Market Put/Call Ratio:</strong> {{ options_analysis.market_put_call_ratio|round(2) }}
+        </p>
+        
+        <h4>Notable Options Activity</h4>
+        <table class="data-table">
+          <tr>
+            <th>Ticker</th>
+            <th>Type</th>
+            <th>Strike</th>
+            <th>Expiry</th>
+            <th>IV</th>
+            <th>Volume</th>
+          </tr>
+          {% for activity in options_analysis.option_activity[:5] %}
+            <tr>
+              <td>{{ activity.ticker }}</td>
+              <td>
+                <span class="badge {% if activity.option_type == 'Call' %}badge-green{% else %}badge-red{% endif %}">
+                  {{ activity.option_type }}
+                </span>
+              </td>
+              <td>${{ activity.strike_price|round(2) }}</td>
+              <td>{{ activity.expiry_date }}</td>
+              <td>{{ (activity.implied_volatility * 100)|round(1) }}%</td>
+              <td>{{ activity.volume|format_number }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>Options market analysis not available for today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Sentiment Analysis <span class="advanced-badge">PRO</span></h2>
+      
+      {% if sentiment_analysis %}
+        <div class="chart-container">
+          <img src="cid:sentiment_chart" alt="Sentiment Analysis Chart">
+        </div>
+        
+        <h4>Market Sentiment: 
+          {% if sentiment_analysis.market_sentiment < -0.3 %}
+            <span class="sentiment-pill sentiment-bearish">Bearish ({{ sentiment_analysis.market_sentiment|round(2) }})</span>
+          {% elif sentiment_analysis.market_sentiment < 0.3 %}
+            <span class="sentiment-pill sentiment-neutral">Neutral ({{ sentiment_analysis.market_sentiment|round(2) }})</span>
+          {% else %}
+            <span class="sentiment-pill sentiment-bullish">Bullish ({{ sentiment_analysis.market_sentiment|round(2) }})</span>
+          {% endif %}
+        </h4>
+        
+        <h4>Trending Topics</h4>
+        <table class="data-table">
+          <tr>
+            <th>Topic</th>
+            <th>Trending Score</th>
+            <th>Sentiment</th>
+          </tr>
+          {% for topic in sentiment_analysis.trending_topics %}
+            <tr>
+              <td>{{ topic.topic }}</td>
+              <td>{{ topic.trending_score }}</td>
+              <td>
+                {% if topic.sentiment < -0.3 %}
+                  <span class="badge badge-red">Bearish</span>
+                {% elif topic.sentiment < 0.3 %}
+                  <span class="badge badge-yellow">Neutral</span>
+                {% else %}
+                  <span class="badge badge-green">Bullish</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>Sentiment analysis not available for today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Cryptocurrency Dashboard <span class="advanced-badge">PRO</span></h2>
+      
+      {% if crypto_dashboard %}
+        <div class="chart-container">
+          <img src="cid:crypto_chart" alt="Cryptocurrency Dashboard">
+        </div>
+        
+        <h4>Market Overview</h4>
+        <p>
+          <strong>Total Market Cap:</strong> ${{ (crypto_dashboard.total_market_cap / 1e9)|round(1) }} trillion<br>
+          <strong>BTC Dominance:</strong> {{ crypto_dashboard.btc_dominance|round(1) }}%<br>
+          <strong>Fear & Greed Index:</strong> 
+          {% if crypto_dashboard.market_fear_greed < 25 %}
+            <span class="sentiment-pill sentiment-bearish">Extreme Fear ({{ crypto_dashboard.market_fear_greed }})</span>
+          {% elif crypto_dashboard.market_fear_greed < 40 %}
+            <span class="sentiment-pill sentiment-bearish">Fear ({{ crypto_dashboard.market_fear_greed }})</span>
+          {% elif crypto_dashboard.market_fear_greed < 60 %}
+            <span class="sentiment-pill sentiment-neutral">Neutral ({{ crypto_dashboard.market_fear_greed }})</span>
+          {% elif crypto_dashboard.market_fear_greed < 75 %}
+            <span class="sentiment-pill sentiment-bullish">Greed ({{ crypto_dashboard.market_fear_greed }})</span>
+          {% else %}
+            <span class="sentiment-pill sentiment-bullish">Extreme Greed ({{ crypto_dashboard.market_fear_greed }})</span>
+          {% endif %}
+        </p>
+        
+        <h4>Top Cryptocurrencies</h4>
+        <table class="data-table">
+          <tr>
+            <th>Crypto</th>
+            <th>Price</th>
+            <th>24h Change</th>
+            <th>Market Cap</th>
+          </tr>
+          {% for crypto in crypto_dashboard.crypto_data[:5] %}
+            <tr>
+              <td>{{ crypto.symbol }}</td>
+              <td>${{ crypto.price|format_price }}</td>
+              <td>
+                <span class="badge {% if crypto.percent_change_24h >= 0 %}badge-green{% else %}badge-red{% endif %}">
+                  {{ crypto.percent_change_24h|round(2) }}%
+                </span>
+              </td>
+              <td>${{ (crypto.market_cap / 1e9)|round(2) }}B</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>Cryptocurrency dashboard not available for today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Trading Signals <span class="advanced-badge">PRO</span></h2>
+      
+      <h3>Buy Signals</h3>
+      {% if buy_signals %}
+        <table class="data-table">
+          <tr>
+            <th>Symbol</th>
+            <th>Reason</th>
+          </tr>
+          {% for signal in buy_signals %}
+            <tr>
+              <td>{{ signal.symbol }}</td>
+              <td>{{ signal.reason }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No buy signals today.</p>
+      {% endif %}
+      
+      <h3>Sell Signals</h3>
+      {% if sell_signals %}
+        <table class="data-table">
+          <tr>
+            <th>Symbol</th>
+            <th>Reason</th>
+          </tr>
+          {% for signal in sell_signals %}
+            <tr>
+              <td>{{ signal.symbol }}</td>
+              <td>{{ signal.reason }}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No sell signals today.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Dividend Analysis <span class="advanced-badge">PRO</span></h2>
+      
+      {% if dividend_analysis %}
+        <table class="data-table">
+          <tr>
+            <th>Symbol</th>
+            <th>Yield</th>
+            <th>Payout Ratio</th>
+          </tr>
+          {% for sym, div in dividend_analysis.items() %}
+            <tr>
+              <td>{{ sym }}</td>
+              <td>{{ div.dividend_yield|round(2) }}%</td>
+              <td>{{ div.payout_ratio|round(2) }}%</td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No dividend analysis available.</p>
+      {% endif %}
+    </div>
+
+    <div class="section">
+      <h2>Macro Trends</h2>
+      <div class="chart-container">
+        <img src="cid:macro_chart" alt="Macro Trends Chart">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Forex Overview <span class="advanced-badge">PRO</span></h2>
+      <div class="chart-container">
+        <img src="cid:forex_chart" alt="Forex Chart">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Volatility Comparison <span class="advanced-badge">PRO</span></h2>
+      <div class="chart-container">
+        <img src="cid:volatility_chart" alt="Volatility Comparison">
+      </div>
+    </div>
+
+    <div class="section" style="text-align: center;">
+      <h2>Additional Resources</h2>
+      <p>Access your complete dashboard with historical data and custom analysis tools.</p>
+      <a href="https://whispr.dev/dashboard?token={{ access_token }}" class="button">Visit Dashboard</a>
+    </div>
+
+    <div class="footer">
+      <p>© 2025 DailyStonks by Whispr.dev — Built with pure code & stochastic foresight.</p>
+      <p>This email was sent to {{ email }}. <a href="https://whispr.dev/unsubscribe?email={{ email }}&token={{ unsubscribe_token }}" style="color: #888;">Unsubscribe</a>.</p>
+      <p><small>The information provided in this report is for general informational purposes only and should not be considered as investment advice. Always conduct your own research before making investment decisions.</small></p>
+    </div>
+  </div>
+</body>
+</html>

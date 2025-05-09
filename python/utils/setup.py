@@ -17,6 +17,8 @@ REQUIRED_PACKAGES = [
     "statsmodels",
     "pandas-datareader",
     "jinja2",
+    "premailer",
+    "flask",
     # Add sendemail or other custom dependencies here
 ]
 

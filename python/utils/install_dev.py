@@ -19,6 +19,8 @@ def main():
         "statsmodels",
         "pandas-datareader",
         "jinja2",
+        "premailer",
+        "flask",
     ]
     
     for package in REQUIRED_PACKAGES:

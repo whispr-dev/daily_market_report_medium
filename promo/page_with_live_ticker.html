@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://dailystonks.whispr.dev/signup" />
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="DailyStonks Signup – AI Stock Reports for 1¢">
+  <meta charset="UTF-8">
+  <title>Live AAPL Stock Tracker – DailyStonks</title>
+  <meta name="description" content="Track AAPL stock price live with AI-powered market insights from DailyStonks for just 1¢ per week.">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 3em;
+      color: #222;
+    }
+    h1 { font-size: 2.5em; }
+    #ticker {
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 1em;
+      padding: 1em;
+      display: inline-block;
+      background: #e0f7fa;
+      border: 2px solid #00838f;
+      border-radius: 6px;
+      color: #004d40;
+    }
+    .promo {
+      margin-top: 2em;
+      font-size: 1.2em;
+    }
+    .promo a {
+      color: #00796b;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Live AAPL Stock Price</h1>
+  <div id="ticker">Loading price...</div>
+
+  <div class="promo">
+    Want daily stock reports like this?<br>
+    <a href="https://dailystonks.whispr.dev/signup">Subscribe to DailyStonks – from just 1¢/week</a>
+  </div>
+
+  <script>
+    async function fetchPrice() {
+      try {
+        const response = await fetch('https://query1.finance.yahoo.com/v7/finance/quote?symbols=AAPL');
+        const data = await response.json();
+        const price = data.quoteResponse.result[0].regularMarketPrice.toFixed(2);
+        document.getElementById('ticker').textContent = `$${price}`;
+      } catch (err) {
+        document.getElementById('ticker').textContent = 'Price unavailable';
+        console.error('Failed to fetch price:', err);
+      }
+    }
+    fetchPrice();
+    setInterval(fetchPrice, 10000); // update every 10s
+  </script>
+
+  <noscript>
+    <div id="ticker">$174.59 (as of last cache)</div>
+  </noscript>
+</body>
+</html>

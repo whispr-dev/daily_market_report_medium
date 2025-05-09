@@ -1,0 +1,2 @@
+timestamp,ticker,score,reasons
+2025-05-04T14:20:00Z,AAPL,83.7,ML Predicted: 78; Forecast Slope: 2.1%; Confidence: 91; Low reversal risk
