@@ -1,0 +1,53 @@
+<div id="paypal-button-container-P-3AU4083519314041MNAPVEUQ"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AXuWCCOUzCWgCvSvETYS-QfFY6reLOuB4sWpZwlPq3geQ6JoJElcdAdQNvPkWeYVwDgoj2L99H3KV8b6&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'pill',
+          color: 'black',
+          layout: 'horizontal',
+          label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          /* Creates the subscription */
+          plan_id: 'P-3AU4083519314041MNAPVEUQ',
+          quantity: 1 // The quantity of the product for a subscription
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID); // You can add optional success message for the subscriber here
+      }
+  }).render('#paypal-button-container-P-3AU4083519314041MNAPVEUQ'); // Renders the PayPal button
+</script>
+
+
+
+
+<div id="paypal-button-container-P-3AU4083519314041MNAPVEUQ"></div>
+<script src="https://www.paypal.com/sdk/js?client-id=AXuWCCOUzCWgCvSvETYS-QfFY6reLOuB4sWpZwlPq3geQ6JoJElcdAdQNvPkWeYVwDgoj2L99H3KV8b6&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+<script>
+  paypal.Buttons({
+      style: {
+          shape: 'pill',
+          color: 'black',
+          layout: 'vertical',
+          label: 'subscribe'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          /* Creates the subscription */
+          plan_id: 'P-3AU4083519314041MNAPVEUQ',
+          quantity: 1 // The quantity of the product for a subscription
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID); // You can add optional success message for the subscriber here
+      }
+  }).render('#paypal-button-container-P-3AU4083519314041MNAPVEUQ'); // Renders the PayPal button
+</script>
+
+TOKEN/SECRET:        ENTtYhMN7U_63PK4JIJmxKoGPXxu2vy2FYSUaVGGL2MEPm8U6_WYPvw2rm32tHjD2tfZbuG9-anO_wfj
+ID:                  AaEyzbSPeevYaOsU1OIHfCdpxUBHqxPxtQAcPK0wfnqnlmC60e1ohAs1zkJCjwaa9XayyEqYbIhhr1bJ 
+SUB_  DISPLAY_NAME:  DailyStonks PLTNM1
+WEBHOOKID:           6CR63874J66036546

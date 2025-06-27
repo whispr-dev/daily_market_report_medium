@@ -1,0 +1,21 @@
+[Unit]
+Description=Gunicorn instance for unsubscribe_server
+After=network.target
+
+[Service]
+User=wofl
+Group=www-data
+WorkingDirectory=/home/wofl/whispr.dev/DailyStonks
+Environment="PATH=/home/wofl/stonksenv/bin"
+ExecStart=/home/wofl/whispr.dev/DailyStonks/run_unsub_server.sh
+
+# Restart on crash or non-zero exit
+Restart=on-failure
+RestartSec=3
+
+# Avoid runaway restart loops
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target
