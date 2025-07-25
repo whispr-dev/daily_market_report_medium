@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Daily Market Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1b1b1b;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #333333;
+            border-radius: 5px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #66ccff;
+        }
+        .summary {
+            background-color: #333333;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .chart-container {
+            background-color: #333333;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .section {
+            background-color: #333333;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #66ccff;
+            border-bottom: 1px solid #444444;
+            padding-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #444444;
+        }
+        th {
+            background-color: #444444;
+            color: #66ccff;
+        }
+        .green {
+            color: #4dfd5d;
+        }
+        .red {
+            color: #fd4d4d;
+        }
+        .signal-item {
+            padding: 5px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888888;
+        }
+        .multi-asset-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media only screen and (max-width: 600px) {
+            .multi-asset-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Enhanced Daily Market Report</h1>
+            <p>{{ sp500_date }}</p>
+        </div>
+        
+        <div class="summary">
+            <h2>Market Summary</h2>
+            <p>
+                <strong>S&P 500:</strong> {{ sp500_value }} 
+                <span class="{% if sp500_pct_change|float > 0 %}green{% else %}red{% endif %}">
+                    {{ sp500_pct_change }}%
+                </span>
+            </p>
+        </div>
+        
+        <!-- S&P 500 Charts -->
+        <div class="chart-container">
+            <h2>S&P 500 - Candlestick Chart</h2>
+            {% if candle_chart %}
+            <img src="data:image/png;base64,{{ candle_chart }}" alt="S&P 500 Candlestick Chart">
+            {% else %}
+            <p>Chart not available</p>
+            {% endif %}
+        </div>
+        
+        <div class="chart-container">
+            <h2>S&P 500 with Technical Indicators</h2>
+            {% if enhanced_chart %}
+            <img src="data:image/png;base64,{{ enhanced_chart }}" alt="S&P 500 with Technical Indicators">
+            {% else %}
+            <p>Chart not available</p>
+            {% endif %}
+        </div>
+        
+        <!-- NEW: Foreign Exchange Chart -->
+        <div class="chart-container">
+            <h2>Currency Market (6 Month Comparison)</h2>
+            {% if forex_chart %}
+            <img src="data:image/png;base64,{{ forex_chart }}" alt="Forex Comparison Chart">
+            {% else %}
+            <p>Chart not available</p>
+            {% endif %}
+        </div>
+        
+        <!-- Sector Performance -->
+        <div class="chart-container">
+            <h2>Sector Performance</h2>
+            {% if heatmap %}
+            <img src="data:image/png;base64,{{ heatmap }}" alt="Sector Performance Heatmap">
+            {% else %}
+            <p>Chart not available</p>
+            {% endif %}
+        </div>
+        
+        <!-- Macro Trends -->
+        <div class="chart-container">
+            <h2>Macro Trends</h2>
+            {% if macro_chart %}
+            <img src="data:image/png;base64,{{ macro_chart }}" alt="Macro Trends Chart">
+            {% else %}
+            <p>Chart not available</p>
+            {% endif %}
+        </div>
+        
+        <!-- NEW: Volatility Comparison -->
+        <div class="chart-container">
+            <h2>Volatility Comparison</h2>
+            {% if volatility_chart %}
+            <img src="data:image/png;base64,{{ volatility_chart }}" alt="Volatility Comparison Chart">
+            {% else %}
+            <p>Chart not available</p>
+            {% endif %}
+        </div>
+        
+        <!-- Technical Signals -->
+        <div class="section">
+            <h2>Technical Signals</h2>
+            
+            <h3>52-Week Highs</h3>
+            {% if fifty_two_week_high %}
+            <ul>
+                {% for symbol in fifty_two_week_high %}
+                <li>{{ symbol }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No stocks at 52-week highs today.</p>
+            {% endif %}
+            
+            <h3>200-Day MA Crossovers</h3>
+            {% if crossover_200d %}
+            <ul>
+                {% for symbol in crossover_200d %}
+                <li>{{ symbol }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No stocks crossing above 200-day MA today.</p>
+            {% endif %}
+        </div>
+        
+        <!-- Trading Signals -->
+        <div class="section">
+            <h2>Trading Signals</h2>
+            
+            <h3>Buy Signals</h3>
+            {% if buy_signals %}
+            <ul>
+                {% for signal in buy_signals %}
+                <li class="signal-item">
+                    <strong>{{ signal.symbol }}</strong>: {{ signal.reason }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No buy signals detected today.</p>
+            {% endif %}
+            
+            <h3>Sell Signals</h3>
+            {% if sell_signals %}
+            <ul>
+                {% for signal in sell_signals %}
+                <li class="signal-item">
+                    <strong>{{ signal.symbol }}</strong>: {{ signal.reason }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No sell signals detected today.</p>
+            {% endif %}
+        </div>
+        
+        <!-- NEW: Multi-Asset Section -->
+        <div class="section">
+            <h2>Multi-Asset Overview</h2>
+            
+            <div class="multi-asset-grid">
+                <!-- Currency Section -->
+                <div>
+                    <h3>Currency Data</h3>
+                    {% if currency_data %}
+                    <table>
+                        <tr>
+                            <th>Pair</th>
+                            <th>Rate</th>
+                            <th>Change</th>
+                        </tr>
+                        {% for pair, data in currency_data.items() %}
+                        <tr>
+                            <td>{{ pair }}</td>
+                            <td>{{ data.current_rate }}</td>
+                            <td class="{% if data.day_change > 0 %}green{% else %}red{% endif %}">
+                                {{ "%.2f"|format(data.day_change) }}%
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>Currency data not available.</p>
+                    {% endif %}
+                </div>
+                
+                <!-- ETF Section -->
+                <div>
+                    <h3>ETF Data</h3>
+                    {% if etf_data %}
+                    <table>
+                        <tr>
+                            <th>ETF</th>
+                            <th>Yield</th>
+                            <th>YTD Return</th>
+                        </tr>
+                        {% for etf, data in etf_data.items() %}
+                        <tr>
+                            <td>{{ etf }}</td>
+                            <td>{{ "%.2f"|format(data.yield) }}%</td>
+                            <td class="{% if data.ytd_return > 0 %}green{% else %}red{% endif %}">
+                                {{ "%.2f"|format(data.ytd_return) }}%
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>ETF data not available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW: Dividend Analysis -->
+        <div class="section">
+            <h2>Dividend Analysis</h2>
+            {% if dividend_analysis %}
+            <table>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Latest Dividend</th>
+                    <th>Annual Dividend</th>
+                    <th>Dividend Yield</th>
+                </tr>
+                {% for symbol, data in dividend_analysis.items() %}
+                <tr>
+                    <td>{{ symbol }}</td>
+                    <td>{{ "%.2f"|format(data.latest_dividend|float) if data.latest_dividend != None else "N/A" }}</td>
+                    <td>{{ "%.2f"|format(data.annual_dividend|float) if data.annual_dividend != None else "N/A" }}</td>
+                    <td>{{ "%.2f"|format(data.dividend_yield|float) + "%" if data.dividend_yield != None else "N/A" }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p>Dividend analysis not available.</p>
+            {% endif %}
+        </div>
+        
+        <!-- Issues and Errors -->
+        <div class="section">
+            <h2>Processing Notes</h2>
+            {% if failed_stocks %}
+            <h3>Errors Encountered</h3>
+            <ul>
+                {% for symbol, error in failed_stocks %}
+                <li>{{ symbol }}: {{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No processing errors encountered.</p>
+            {% endif %}
+        </div>
+        
+        <div class="footer">
+            <p>Generated on {{ sp500_date }} | Daily Market Report</p>
+        </div>
+    </div>
+</body>
+</html>

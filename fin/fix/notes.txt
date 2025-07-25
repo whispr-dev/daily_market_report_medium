@@ -1,0 +1,15 @@
+The consolidated code is now organized as follows:
+
+- Imports and setup
+- Utility functions (img_to_base64)
+- Chart generation functions (candlestick, sector heatmap, macro chart)
+- Main function with logical sections:
+
+1. Read stock universe data
+2. Calculate daily percentage changes
+3. Find 52-week highs and 200-day MA crossovers
+4. Get S&P 500 statistics
+5. Generate all charts
+6. Render the HTML template
+7. Save and email the report
+
