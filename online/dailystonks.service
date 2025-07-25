@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve DailyStonks
+After=network.target
+
+[Service]
+User=wofl
+Group=www-data
+WorkingDirectory=/home/wofl/whispr.dev/DailyStonks
+Environment="PATH=/home/wofl/stonksenv/bin"
+ExecStart=/home/wofl/stonksenv/bin/gunicorn --workers 3 --bind unix:/home/wofl/whispr.dev/DailyStonks/dailystonks.sock main_app:app
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Stonk Market Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #1b1b1b; color: #dedede; }
+        a { color: #66ccff; }
+        table { border-collapse: collapse; width: 100%; margin: 1em 0; }
+        th, td { border: 1px solid #444; padding: 6px; }
+        th { background-color: #333; }
+        .positive { color: #4dfd5d; }
+        .negative { color: #fd4d4d; }
+        h2 { margin-top: 1em; color: #fff; }
+        .signal-box { 
+            border: 1px solid #444; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border-radius: 4px; 
+            background-color: #252525;
+        }
+        .buy-signal { border-left: 5px solid #4dfd5d; }
+        .sell-signal { border-left: 5px solid #fd4d4d; }
+    </style>
+</head>
+<body>
+    <h2><a href="https://finance.yahoo.com/quote/%5EGSPC?p=%5EGSPC">S&P 500</a> ^GSPC {{ sp500_value }}
+        <span style="color: {% if sp500_pct_change >= 0 %}#4dfd5d{% else %}#fd4d4d{% endif %};">
+        ({{ '%+.2f'|format(sp500_pct_change) }}%)
+        </span>
+        <small>{{ sp500_date }}</small>
+    </h2>
+
+    <!-- Trading Signals Section -->
+    {% if buy_signals %}
+    <h2 class="positive">📈 Buy Signals</h2>
+    {% for signal in buy_signals %}
+    <div class="signal-box buy-signal">
+        <h3><a href="https://finance.yahoo.com/quote/{{ signal.symbol }}">{{ signal.symbol }}</a></h3>
+        <p>{{ signal.reason }}</p>
+        <p><strong>Trade Management:</strong> Set stop loss below the previous market low. Target a 1:1.5 risk-reward ratio.</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>No buy signals detected today.</h3>
+    {% endif %}
+
+    {% if sell_signals %}
+    <h2 class="negative">📉 Sell Signals</h2>
+    {% for signal in sell_signals %}
+    <div class="signal-box sell-signal">
+        <h3><a href="https://finance.yahoo.com/quote/{{ signal.symbol }}">{{ signal.symbol }}</a></h3>
+        <p>{{ signal.reason }}</p>
+        <p><strong>Trade Management:</strong> Set stop loss above the previous market high. Target a 1:1.5 risk-reward ratio.</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h3>No sell signals detected today.</h3>
+    {% endif %}
+
+    {% if fifty_two_week_high %}
+    <h2>52-Week High List</h2>
+    <ul>
+      {% for sym in fifty_two_week_high %}
+      <li><a href="https://finance.yahoo.com/quote/{{ sym }}">{{ sym }}</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h3>No new 52-week highs found.</h3>
+    {% endif %}
+
+    {% if crossover_200d %}
+    <h2>200-Day MA Crossover</h2>
+    <ul>
+      {% for sym in crossover_200d %}
+      <li><a href="https://finance.yahoo.com/quote/{{ sym }}">{{ sym }}</a></li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <h3>No 200d crossovers found.</h3>
+    {% endif %}
+
+    <h2>S&P 500 with Reversal Signals & EWO</h2>
+    {% if enhanced_chart %}
+    <img src="data:image/png;base64,{{ enhanced_chart }}" style="max-width:95%;"/>
+    {% else %}
+    <p>No enhanced chart available for S&P 500.</p>
+    {% endif %}
+
+    {% if candle_chart %}
+    <h2>S&P 500 Standard Candlestick (6mo)</h2>
+    <img src="data:image/png;base64,{{ candle_chart }}" style="max-width:80%;"/>
+    {% else %}
+    <p>No candlestick chart available for S&P 500.</p>
+    {% endif %}
+
+    {% if heatmap %}
+    <h2>Sector Heatmap (Daily % Change)</h2>
+    <img src="data:image/png;base64,{{ heatmap }}" style="max-width:80%;"/>
+    {% else %}
+    <p>No sector heatmap available.</p>
+    {% endif %}
+
+    {% if macro_chart %}
+    <h2>Macro Chart (S&P, BTC, M2) Past 6mo + Short Forecast</h2>
+    <img src="data:image/png;base64,{{ macro_chart }}" style="max-width:80%;"/>
+    {% else %}
+    <p>No macro chart available.</p>
+    {% endif %}
+
+    {% if failed_stocks %}
+    <h2>Failed Downloads</h2>
+    <ul>
+      {% for sym, reason in failed_stocks %}
+      <li>{{ sym }} - {{ reason }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

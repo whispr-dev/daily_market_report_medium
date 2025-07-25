@@ -1,0 +1,41 @@
+Magic Reversal Indicator
+Open TradingView and search for “K’s Reversal Indicator”.
+
+Elliott Wave Oscillator (EWO)
+Search for “Elliott Wave Oscillator” on TradingView.
+
+
+Trading Rules
+Buy Entry Conditions (Long Trade)
+A buy trade is entered when all the following conditions are met:
+
+
+✅ The Magic Reversal Indicator gives a bullish reversal signal.
+✅ The Reversal Indicator mark appears below the Blue line.
+✅ The Elliott Wave Oscillator (EWO) bar is green and rising.
+✅ A bullish candle forms after the signal, confirming momentum.
+
+📌 Trade Management:
+
+Stop Loss: Below the previous market low.
+Risk-Reward Ratio: 1:1.5 (For every ₹100 risked, the target is ₹150).
+Sell Entry Conditions (Short Trade)
+A sell trade is entered when all the following conditions are met:
+
+
+✅ The Magic Reversal Indicator gives a bearish reversal signal.
+✅ The Elliott Wave Oscillator (EWO) bar is red and falling.
+✅ A bearish candle forms after the signal, confirming the downtrend.
+
+📌 Trade Management:
+
+Stop Loss: Above the previous market high.
+Risk-Reward Ratio: 1:1.5.
+Key Points to Remember
+📌 Best suited for15-minute charts.
+📌 Works well for forex and commodity
+📌 Provides clear entry and exit points, reducing guesswork.
+📌 Risk management is crucial — always use a stop-loss and a 1:1.5 risk-reward ratio.
+📌 Backtest before live trading to gain confidence in the strategy.
+
+The Magic Reversal + Elliott Wave Oscillator Strategy is an excellent tool for traders looking for a structured approach to scalping. Combining a reversal signal with a trend confirmation eliminates random trades and improves overall accuracy.

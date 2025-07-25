@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Enhanced Market Report</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+          }
+          h1, h2, h3, h4 {
+            color: white;
+          }
+          p, li, td {
+            color: white;
+          }
+          a {
+            color: #89CFF0;
+          }
+          img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+          }
+        </style>
+    </head>
+<body>
+  <h1>Market Summary</h1>
+  <p>S&P 500: {{ sp500_value }} ({{ sp500_pct_change }}%) — {{ sp500_date }}</p>
+
+  <h2>Standard Candlestick</h2>
+  <img src="cid:candle_chart" alt="Candlestick Chart" />
+
+  <h2>Enhanced Chart</h2>
+  <img src="cid:enhanced_chart" alt="Enhanced Chart" />
+
+  <h2>Sector Heatmap</h2>
+  <img src="cid:heatmap" alt="Sector Heatmap" />
+
+  <h2>Macro Trends</h2>
+  <img src="cid:macro_chart" alt="Macro Chart" />
+
+  <h2>Forex Overview</h2>
+  <img src="cid:forex_chart" alt="Forex Chart" />
+
+  <h2>Volatility Comparison</h2>
+  <img src="cid:volatility_chart" alt="Volatility Comparison" />
+
+  <h2>52-Week Highs</h2>
+  {% if fifty_two_week_high %}
+    <ul>
+      {% for stock in fifty_two_week_high %}
+        <li>{{ stock.symbol }}: {{ stock.close }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No 52-week highs today.</p>
+  {% endif %}
+
+  <h2>200-Day MA Crossovers</h2>
+  {% if crossover_200d %}
+    <ul>
+      {% for stock in crossover_200d %}
+        <li>{{ stock.symbol }}: {{ stock.close }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No crossovers today.</p>
+  {% endif %}
+
+  <h2>Buy Signals</h2>
+  {% if buy_signals %}
+    <ul>
+      {% for signal in buy_signals %}
+        <li>{{ signal.symbol }}: {{ signal.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No buy signals.</p>
+  {% endif %}
+
+  <h2>Sell Signals</h2>
+  {% if sell_signals %}
+    <ul>
+      {% for signal in sell_signals %}
+        <li>{{ signal.symbol }}: {{ signal.reason }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No sell signals.</p>
+  {% endif %}
+
+  <h2>Dividends</h2>
+  {% if dividend_analysis %}
+    <ul>
+      {% for sym, div in dividend_analysis.items() %}
+        <li>{{ sym }}: Yield {{ div.yield }}%, Payout {{ div.payout_ratio }}%</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No dividend info available.</p>
+  {% endif %}
+
+</body>
+</html>

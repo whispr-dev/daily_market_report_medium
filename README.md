@@ -1,174 +1,191 @@
-# Automailer: Daily Email with Custom Market Analysis
-20250325115224 Tue
+# DailyStonks 📈
 
+AI-powered market analysis and report system with advanced ML features.
 
-This repository automates a [daily] email that includes:
-- A custom stock analysis for certain tickers
-- 52-week high trackers
-- 200-day moving average (SMA) crossovers
-- S&P 500 reference data
+![License](https://img.shields.io/badge/license-MIT%2FCC0_Hybrid-blue)
+![Python](https://img.shields.io/badge/python-3.8+-blue)
 
+## Overview
 
-Originally inspired by [this Medium article](https://medium.com/@phitzi/automating-a-daily-email-with-custom-stock-analysis-with-python-b11eec1ab192).
+DailyStonks is a complete system for generating and distributing professional stock market analysis reports via email. The system combines traditional technical analysis with cutting-edge machine learning algorithms to deliver actionable insights to subscribers.
 
-## Table of Contents
-1. [Overview](#overview)
-2. [Project Contents Explained](#project-contents-explained)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Scheduling (Optional)](#scheduling-optional)
-6. [License](#license)
+### Key Features
 
+- **Tiered Subscription Model** (Free, Basic, Pro)
+- **PayPal Integration** for subscription management
+- **Beautiful Dark-Mode Reports** with responsive design
+- **AI-Powered Analysis** with predictive algorithms
+- **Security Features** like watermarking and access controls
+- **CLI + Dashboard Tools** for power users
 
----
+## System Architecture
 
-## 1. Overview
+```
+dailystonks/
+├── mod/                   # Core Python modules
+│   ├── analysis/          # Analysis modules
+│   ├── data/              # Data fetching modules
+│   ├── reporting/         # Reporting modules
+│   ├── utils/             # Utility modules
+│   └── visualization/     # Visualization modules
+├── templates/             # Email templates
+├── static/                # Static web files
+├── scripts/               # Operation scripts
+└── main_enhanced.py       # Main entry point
+```
 
-**Goal**: Automatically email a customized daily market report. You can tailor the stocks of interest, the email template, and the logic for detecting interesting market events (like 52-week highs or SMA crossovers).
+## ML Features
 
-**How It Works**:
-i. **`main.py`** reads a CSV file (`stocks_universe.csv`) to gather stock symbols.  
-ii. It uses [yfinance](https://github.com/ranaroussi/yfinance) to download historical price data for each ticker.
-iii. Each ticker is analyzed for:
-   - 52-week highs
-   - 200-day SMA crossovers
-iv. It also fetches S&P 500 (`^GSPC`) data for context.
-v. The results get rendered via a Jinja2 HTML template (`email_template.html`).
-vi. **`sendemail.py`** handles SMTP email sending, pulling credentials from environment variables (or a `.env` file using `python-dotenv`).
-vii. Finally, an email is generated and sent with the daily summary.
+- **Composite Score Engine** - Weighted ranking system combining multiple signals
+- **AI Forecast Overlay** - Short-term price prediction using Ridge regression
+- **Reversal Risk Heatmap** - Pattern detection across market sectors
+- **Autoencoder Anomaly Detection** - Neural net that flags unusual market behavior
+- **Kalman Filter Smoothing** - Probabilistic noise filtering for clean signals
+- **Regime Detection via HMM** - Hidden Markov Model for market state classification
+- **Bayesian Forecasting** - Trend forecasts with credible intervals
+- **CLI + Visual Dashboard** - Command-line tools for visualization and analysis
 
+## Quick Start
 
----
+### Prerequisites
 
-## 2. Project Contents Explained
-root/ 
- ├── README.md # This README 
- ├── LICENSE # The license file 
- └── env/
-     ├── requirements.txt # Python dependencies 
-     ├── stocks_universe.csv # CSV of ticker symbols and associated data 
-     ├── email_template.html # HTML template for the emailed report 
-     ├── main.py # Main script that downloads data, analyzes, and triggers email 
-     ├── sendemail.py # Helper script to send the email via SMTP 
-     └── run_stonks.bat # (Optional) Windows batch file to run main.py on a schedule
+- Python 3.8+
+- Nginx web server
+- Redis (for background tasks)
+- PayPal Developer Account
 
+### Installation
 
-### Files Explained In Detail
+1. **Clone this repository**:
+   ```bash
+   git clone https://github.com/yourusername/dailystonks.git
+   cd dailystonks
+   ```
 
-i. **`main.py`**  
-   - The heart of the project.  
-   - Reads in `stocks_universe.csv`, filters relevant tickers, and downloads their market data via yfinance.  
-   - Analyzes each stock for 52-week highs and 200-day moving average crossovers.  
-   - Fetches S&P 500 data for reference.  
-   - Renders an HTML email using `email_template.html` and sends it via `send_email()`.
+2. **Run the setup script**:
+   ```bash
+   chmod +x setup_pro_features.sh
+   ./setup_pro_features.sh
+   ```
 
-ii. **`sendemail.py`**  
-   - Handles SMTP connection and email-sending logic.  
-   - Pulls SMTP credentials and other settings from environment variables or a `.env` file, thanks to `python-dotenv`.  
-   - Expects these environment variables:
-     - `smtp_user`
-     - `SMTP_PASSWORD`
-     - `SMTP_SERVER`
-     - `SMTP_PORT`
-     - `SENDER_EMAIL`
-     - `TO_EMAIL`
+3. **Configure your environment**:
+   ```bash
+   nano .env
+   ```
 
-iii. **`email_template.html`**  
-   - A [Jinja2](https://palletsprojects.com/p/jinja/) HTML template.  
-   - Renders the S&P 500 stats, the 52-week high table, and the crossover table.  
-   - Also displays any errors in a separate section.
+4. **Start the services**:
+   ```bash
+   ./deploy.sh all
+   ```
 
-iv. **`stocks_universe.csv`**  
-   - A CSV listing all your ticker symbols plus additional metadata (CapCategory, sector, shortName, etc.).  
-   - `main.py` filters and loops through these tickers for the daily analysis.
+5. **Generate a test report**:
+   ```bash
+   ./test_pro_report.sh
+   ```
 
-v. **`run_stonks.bat`**  
-   - A convenience file for Windows.  
-   - Can be scheduled via **Task Scheduler** to run `python main.py` automatically each day.  
-   - Typical content:
-     `bat`
-     `@echo off`
-     `cd /d "C:\path\to\your\project"` 
-     `python main.py`
+## Running the System
 
-vi **`LICENSE`**  
-   - Indicates the project’s license terms (MIT, Apache, or otherwise).
+### Start/Stop Services
 
-vii. **`requirements.txt`**  
-   - Lists all Python dependencies (e.g., `pandas`, `yfinance`, `jinja2`, `python-dotenv`), so you can `pip install -r requirements.txt` easily.
+```bash
+# Start all services
+./deploy.sh all
 
+# Stop all services
+./stop.sh all
 
----
+# Check status
+./status.sh
 
-## 3. Installation
+# View logs
+./logs.sh [service]
+```
 
-i. **Clone this repo** (or download as ZIP and extract).
-ii. **Install Python dependencies**:
+### Manage Reports
 
-`pip install -r requirements.txt`
-Set up your environment variables (especially if using .env):
+```bash
+# Generate a report
+./generate_report.sh [tier]
 
-### Example .env contents:
-`smtp_user=mysmtpuser`
-`SMTP_PASSWORD=mysecretpassword`
-`SMTP_SERVER=smtp.myserver.com`
-`SMTP_PORT=587`
-`SENDER_EMAIL=me@example.com`
-`TO_EMAIL=recipient@example.com`
-`Prepare stocks_universe.csv to include your desired tickers and metadata.`
+# Send reports to subscribers
+./send_report.sh [tier]
 
+# Pro-tier reports specifically
+./send_pro_reports.sh
+```
 
----
+## Subscription Tiers
 
-## 4. Usage
-To run the script manually:
+### Free Tier
+- Basic market summary
+- S&P 500 candlestick chart
+- Weekly reports (Friday only)
 
+### Basic Tier ($1c/week)
+- Daily reports (Monday-Friday)
+- Enhanced charts with indicators
+- Sector heatmap
+- Technical signals
 
-`python main.py`
-This will:
+### Pro Tier ($1c/day)
+- All features from lower tiers
+- AI-powered insights
+- Options market analysis
+- Crypto dashboard
+- Sentiment analysis
+- Advanced ML features
 
-Grab data from Yahoo Finance.
+## Security Features
 
-Generate the HTML using Jinja2.
+- **Access Tokens** - Time-limited tokens for premium content
+- **Image Watermarking** - Subtle subscriber identification
+- **Rate Limiting** - Protection against abuse
+- **Signature Verification** - PayPal webhook security
+- **Unique Subscriber IDs** - Deterministic but unguessable
 
-Send the daily email via the SMTP credentials you configured.
+## Maintenance
 
-You’ll see console output indicating which tickers were processed and whether the email was successful.
+```bash
+# Backup mailing list
+cp mailing_list.txt mailing_list_backup_$(date +%Y%m%d).txt
 
+# Clean old reports
+./cleanup_reports.sh 30
 
----
+# Check system health
+./health_check.sh
+```
 
-## 5. Scheduling (Optional)
-Windows Task Scheduler
-Create a .bat file (run_stonks.bat) with:
+## Command-Line Tools
 
-`@echo off`
-`cd /d "C:\path\to\this\repo"`
-`python main.py`
+Access the ML-powered tools:
 
-Open Task Scheduler → Create Basic Task → Set daily trigger + point it to run_stonks.bat.
+```bash
+# ML dashboard
+python -m mod.cli.dashboard
 
----
+# Top scores report
+python -m mod.cli.top_scores --limit 10
 
-Linux/macOS (Cron)
-Open crontab:
+# Reversal risk analysis
+python -m mod.cli.reversal_risk --index "^GSPC"
 
-`crontab -e`
-Add an entry to run once a day (say, at 9 AM):
+# Anomaly detection
+python -m mod.cli.anomalies --days 5 --threshold 0.75
+```
 
-`0 9 * * * /usr/bin/python /path/to/main.py`
+## Documentation
 
-Save. Cron will run the script automatically.
+For complete documentation:
 
+- [System Guide](docs/DailyStonks_Master_Guide.md) - Complete system documentation
+- [API Reference](docs/API_Reference.md) - API endpoints and usage
+- [ML Features](docs/ML_Features.md) - Detailed ML/AI capabilities
 
----
+## License
 
-## 6. License
-This project is released under the terms of the LICENSE file in this repository. Please see the license file for details.
+This project uses a hybrid licensing model:
+- Code: MIT License
+- Content/Documentation: CC0
 
-
----
-
-### Happy stonks scanning! Feel free to open issues or pull requests if you discover improvements or want to share your customizations.
-
----
+## Support

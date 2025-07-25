@@ -1,0 +1,52 @@
+"next_payment": "2025-04-05"
+    }
+  },
+  {
+    "email": "prouser5@example.com",
+    "subscription_id": "sub_klmno",
+    "tier": "Pro",
+    "subscription_date": "2024-03-18",
+    "payment_status": "active",
+    "preferences": {
+      "notification_time": "market_close",
+      "include_crypto": true,
+      "watchlist": ["JPM", "GS", "MS", "BAC", "WFC", "C"]
+    },
+    "subscription_info": {
+      "plan": "monthly",
+      "next_payment": "2024-05-18"
+    }
+  },
+  {
+    "email": "prouser6@example.com",
+    "subscription_id": "sub_pqrst",
+    "tier": "Pro",
+    "subscription_date": "2024-02-05",
+    "payment_status": "active",
+    "preferences": {
+      "notification_time": "after_hours",
+      "include_crypto": false,
+      "watchlist": ["AAPL", "MSFT", "GOOGL", "AMZN", "FB", "SPY"]
+    },
+    "subscription_info": {
+      "plan": "yearly",
+      "next_payment": "2025-02-05"
+    }
+  },
+  {
+    "email": "prouser7@example.com",
+    "subscription_id": "sub_uvwxy",
+    "tier": "Pro",
+    "subscription_date": "2024-04-20",
+    "payment_status": "active",
+    "preferences": {
+      "notification_time": "pre_market",
+      "include_crypto": true,
+      "watchlist": ["XLE", "XLF", "XLK", "XLV", "XLI", "XLU"]
+    },
+    "subscription_info": {
+      "plan": "quarterly",
+      "next_payment": "2024-07-20"
+    }
+  }
+]

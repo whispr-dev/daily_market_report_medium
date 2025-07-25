@@ -3,4 +3,6 @@ old_code/
 actions-runner/
 env/_pycache_/
 env/env/
-.secrets
+.secrets/
+.ico/
+temp/

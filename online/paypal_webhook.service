@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve PayPal Webhook
+After=network.target
+
+[Service]
+User=wofl
+Group=www-data
+WorkingDirectory=/home/wofl/whispr.dev/DailyStonks
+Environment="PATH=/home/wofl/stonksenv/bin"
+ExecStart=/home/wofl/whispr.dev/DailyStonks/run_webhook_gunicorn.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

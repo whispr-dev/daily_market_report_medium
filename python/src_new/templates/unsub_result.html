@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unsubscribed</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 60px;
+        }
+        .msg {
+            font-size: 1.3em;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin-top: 20px;
+            background-color: #222;
+            color: white;
+            border: 1px solid #555;
+            font-family: sans-serif;
+        }
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            border: none;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg">
+        <h1>🫡 Thanks for being with us as long as you did</h1>
+        <p>{{ message }}</p>
+
+        {% if email %}
+        <form method="POST" action="{{ url_for('unsubscribe') }}?email={{ email }}">
+            <p>we're so sorry to see you go - if you want tell us why you unsubscribed we'll try to improve for future betterment?</p>
+            <textarea name="feedback" placeholder="I left because..."></textarea><br>
+            <input type="submit" value="Send Feedback">
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
